@@ -4,54 +4,9 @@
 
 <body>
   <h1>AdViz Control Panel</h1>
-  <div class="container">
-    <header>
-      <h2>Subscribers</h2>
-    </header>
- 
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>ID</th>
-        <th>Gender</th>
-      </tr>
-      {{#each subscribers}}
-        {{> subscriber}}
-      {{/each}}
-    </table>
-  </div>
-  {{> main}}
-  {{> messaging}}
-		
-  
+  {{> subscribers_overview}}
+  {{> facebook_users}}
+  {{> facebook_messaging}}
 </body>
-<template name="subscriber">
-  <tr>
-    <td>{{name}}</td>
-    <td>{{id}}</td>
-    <td>{{gender}}</td>
-  </tr>
-</template>
 
-<template name="main">
-  <br>
-  <form class="search-user">
-      <input type="text" name="text" placeholder="Type to search a user" />
-    <input type="submit" value="Find ID" />
-  </form>
-  {{queries}}
-  
-    
-  <form class="add-subscriber">
-      <input type="text" name="text" placeholder="User ID to Add" />
-    <input type="submit" value="Add Subscriber" />
-  </form>
-</template>
-<template name="messaging">
-  <h2>Messaging Section</h2>
-  <form class="send-message">
-      <input type="text" name="id" placeholder="ID of Subscriber" />
-      <input type="text" name="message" placeholder="Message" />
-      <input type="submit" value="Send Message" />
-  </form>
-</template>
+

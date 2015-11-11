@@ -1,0 +1,28 @@
+<template name="subscribers_overview">
+  <div class="container">
+    <header>
+      <h2>Subscribers</h2>
+    </header>
+ 
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Facebook ID</th>
+        <th>Gender</th>
+      </tr>
+      {{#each subscribers}}
+        {{> subscriber}}
+      {{/each}}
+    </table>
+  </div>
+</template>
+
+<template name="subscriber">
+  <tr>
+    <td>{{id}}</td>
+    <td>{{name}}</td>
+    <td>{{fb_id}}</td>
+    <td>{{gender}}</td>
+  </tr>
+</template>

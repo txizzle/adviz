@@ -2,7 +2,7 @@ Subscribers = new Mongo.Collection("subscribers");
 
 if (Meteor.isClient) {
   Session.setDefault('queries', '');
-  Template.body.helpers({
+  Template.subscribers_overview.helpers({
     subscribers: function() {
       return Subscribers.find({});
     },
@@ -11,7 +11,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.messaging.events({
+  Template.facebook_messaging.events({
     'submit .send-message': function(event) {
       // Prevent default browser form submit
       console.log("sending message");
@@ -27,7 +27,7 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.main.events({
+  Template.facebook_users.events({
     'submit .add-subscriber': function(event) {
       event.preventDefault();
       var id = event.target.text.value;
@@ -80,7 +80,8 @@ if (Meteor.isServer) {
             console.log(ret);
             console.log(ret[id]['name']);
             Subscribers.insert({
-              id: id,
+              id: Subscribers.find().count() + 1,
+              fb_id: id,
               name: ret[id]['name'],
               gender: ret[id]['gender']
             });
