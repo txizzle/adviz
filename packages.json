@@ -1,3 +1,4 @@
 {
-  "facebook-chat-api" : "1.0.3"
+  "facebook-chat-api" : "1.0.3",
+  "twilio" : "2.5.2"
 }

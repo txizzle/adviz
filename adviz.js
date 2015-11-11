@@ -33,11 +33,13 @@ if (Meteor.isClient) {
   Template.facebook_users.events({
     'submit .add-subscriber': function(event) {
       event.preventDefault();
-      var id = event.target.text.value;
-      Meteor.call('addSubscriber', id, function(err, res) {
+      var fb_id = event.target.fb_id.value;
+      var phone = event.target.phone.value;
+      Meteor.call('addSubscriber', fb_id, phone, function(err, res) {
         if(err) return console.error(err);
       });
-      event.target.text.value = "";
+      event.target.fb_id.value = "";
+      event.target.phone.value = "";
     },
     'submit .search-user': function(event) {
       event.preventDefault();
@@ -72,8 +74,23 @@ if (Meteor.isServer) {
         console.log("fb id: " + fb_id);
         api.sendMessage(message, fb_id);
       }));
+      
+      //Twilio
+      var accountSid = 'AC53db7a939b89ebd3bd9646b5fd1bb9e4'; 
+      var authToken = '8361eaec0af9fc521cbaa4e877bd0af5'; 
+      var client = Meteor.npmRequire('twilio')(accountSid, authToken); 
+      
+      //TODO: parse phone number to make sure it is ########## without () or -
+      var phone = "+1" + Subscribers.findOne({id: id}).phone
+      client.messages.create({  
+        from: "+17073982604",   
+        to: phone,
+        body: message,
+      }, function(err, res) { 
+        console.log(res.sid); 
+      });
     },
-    'addSubscriber': function addSubscriber(id) {
+    'addSubscriber': function addSubscriber(id,phone) {
       var login = Meteor.npmRequire('facebook-chat-api');
       login({email: "adviz.bot@gmail.com", password: "smartvizag"}, Meteor.bindEnvironment(function callback (err, api) {
           if(err) return console.error(err);
@@ -86,7 +103,8 @@ if (Meteor.isServer) {
               id: (Subscribers.find().count() + 1).toString(),
               fb_id: id,
               name: ret[id]['name'],
-              gender: ret[id]['gender']
+              gender: ret[id]['gender'],
+              phone: phone
             });
           }));
       }));
