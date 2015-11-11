@@ -1,13 +1,16 @@
 Subscribers = new Mongo.Collection("subscribers");
+Queries = new Mongo.Collection("queries");
 
 if (Meteor.isClient) {
-  Session.setDefault('queries', '');
   Template.subscribers_overview.helpers({
     subscribers: function() {
       return Subscribers.find({});
-    },
+    }
+  });
+  
+  Template.facebook_users.helpers({
     queries: function() {
-      return Session.get('queries');
+      return Queries.find({});
     }
   });
 
@@ -42,8 +45,6 @@ if (Meteor.isClient) {
       Meteor.call('searchUser', name, function(err, res) {
         if(err) return console.error(err);
         console.log("Callback returned!");
-        Session.set('queries', res);
-        console.log(Session.get('queries'));
       });
       event.target.text.value = "";
     }
@@ -62,13 +63,15 @@ if (Meteor.isServer) {
       login({
         email: "adviz.bot@gmail.com",
         password: "smartvizag"
-      }, function callback(err, api) {
+      }, Meteor.bindEnvironment(function callback(err, api) {
         console.log("logging in now");
         if (err) return console.error(err);
         console.log("logged in!");
         //need to implement threadID for group chats
-        api.sendMessage(message, id);
-      });
+        var fb_id = Subscribers.findOne({id: id}).fb_id;
+        console.log("fb id: " + fb_id);
+        api.sendMessage(message, fb_id);
+      }));
     },
     'addSubscriber': function addSubscriber(id) {
       var login = Meteor.npmRequire('facebook-chat-api');
@@ -80,7 +83,7 @@ if (Meteor.isServer) {
             console.log(ret);
             console.log(ret[id]['name']);
             Subscribers.insert({
-              id: Subscribers.find().count() + 1,
+              id: (Subscribers.find().count() + 1).toString(),
               fb_id: id,
               name: ret[id]['name'],
               gender: ret[id]['gender']
@@ -94,17 +97,26 @@ if (Meteor.isServer) {
       login({
         email: "adviz.bot@gmail.com",
         password: "smartvizag"
-      }, function callback(err, api) {
+      }, Meteor.bindEnvironment(function callback(err, api) {
         console.log("logging in now");
         if (err) return console.error(err);
         console.log("logged in!");
 
-        api.getUserID(name, function(err, data) {
+        api.getUserID(name, Meteor.bindEnvironment(function(err, data) {
           if (err) return callback(err);
+          Queries.remove({})
           console.log(data);
-          return data;
-        });
-      });
+          console.log("what");
+          for (i = 0; i < data.length; i++) {
+            Queries.insert({
+              name: data[i]['name'],
+              userID: data[i]['userID'],
+              category: data[i]['category'],
+              photoUrl: data[i]['photoUrl']
+            });
+          }
+        }));
+      }));
     }
   });
 

@@ -1,13 +1,38 @@
 <template name="facebook_users">
-  <br>
+  <p>How to add subscribers</p>
+  <ol>
+    <li>Search the name of the Facebook User</li>
+    <li>Find the Facebook ID of the correct Facebook User</li>
+    <li>Paste ID into 'Add Subscriber'</li>
+    <li>Send messages to subscriber via the Messaging Section</li>
+  </ol>
   <form class="search-user">
       <input type="text" name="text" placeholder="Type to search a user" />
     <input type="submit" value="Find ID" />
   </form>
-  {{queries}}
+  <table>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Photo</th>
+        <th>Facebook ID</th>
+      </tr>
+      {{#each queries}}
+        {{> query}}
+      {{/each}}
+  </table>
   
   <form class="add-subscriber">
       <input type="text" name="text" placeholder="User ID to Add" />
     <input type="submit" value="Add Subscriber" />
   </form>
+</template>
+
+<template name="query">
+  <tr>
+    <td>{{name}}</td>
+    <td>{{category}}</td>
+    <td><img src="{{photoUrl}}"></td>
+    <td>{{userID}}</td>
+  </tr>
 </template>
