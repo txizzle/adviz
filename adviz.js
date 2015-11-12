@@ -56,6 +56,8 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function() {
     // code to run on server at startup
+    //hacky way to clear searches
+    Queries.remove({});
   });
 
   Meteor.methods({
