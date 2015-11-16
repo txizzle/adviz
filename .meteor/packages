@@ -22,3 +22,9 @@ meteorhacks:npm
 
 
 npm-container
+iron:router
+http
+accounts-password
+accounts-ui
+msavin:mongol
+email

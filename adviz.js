@@ -7,7 +7,7 @@ if (Meteor.isClient) {
       return Subscribers.find({});
     }
   });
-  
+
   Template.facebook_users.helpers({
     queries: function() {
       return Queries.find({});
@@ -29,7 +29,7 @@ if (Meteor.isClient) {
       event.target.id.value = "";
     }
   });
-  
+
   Template.facebook_users.events({
     'submit .add-subscriber': function(event) {
       event.preventDefault();
@@ -58,6 +58,18 @@ if (Meteor.isServer) {
     // code to run on server at startup
     //hacky way to clear searches
     Queries.remove({});
+
+    //setup SMTP for email verification
+    smtp = {
+      username: 'adviz.bot@gmail.com',   // eg: server@gentlenode.com
+      password: 'smartvizag',
+      server:   'smtp.gmail.com',  // eg: mail.gandi.net
+      port: 465
+    };
+
+    // process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+    process.env.MAIL_URL="smtp://adviz.bot%40gmail.com:smartvizag@smtp.gmail.com:465/"; 
+
   });
 
   Meteor.methods({
@@ -76,20 +88,20 @@ if (Meteor.isServer) {
         console.log("fb id: " + fb_id);
         api.sendMessage(message, fb_id);
       }));
-      
+
       //Twilio
-      var accountSid = 'AC53db7a939b89ebd3bd9646b5fd1bb9e4'; 
-      var authToken = '8361eaec0af9fc521cbaa4e877bd0af5'; 
-      var client = Meteor.npmRequire('twilio')(accountSid, authToken); 
-      
+      var accountSid = 'AC53db7a939b89ebd3bd9646b5fd1bb9e4';
+      var authToken = '8361eaec0af9fc521cbaa4e877bd0af5';
+      var client = Meteor.npmRequire('twilio')(accountSid, authToken);
+
       //TODO: parse phone number to make sure it is ########## without () or -
       var phone = "+1" + Subscribers.findOne({id: id}).phone
-      client.messages.create({  
-        from: "+17073982604",   
+      client.messages.create({
+        from: "+17073982604",
         to: phone,
         body: message,
-      }, function(err, res) { 
-        console.log(res.sid); 
+      }, function(err, res) {
+        console.log(res.sid);
       });
     },
     'addSubscriber': function addSubscriber(id,phone) {
@@ -140,4 +152,15 @@ if (Meteor.isServer) {
     }
   });
 
+
+  Accounts.config({
+    sendVerificationEmail: true,
+    forbidClientAccountCreation: false
+  });
 }
+
+Router.route('/', {
+    template: 'home'
+});
+
+Router.route('/admin');
