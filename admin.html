@@ -4,11 +4,17 @@
   </head>
 
   <body>
-    <h1>AdViz Control Panel</h1>
-    {{> subscribers_overview}}
-    {{> facebook_users}}
-    {{> facebook_messaging}}
+    <div id="splash">
+      <header>
+        <div class="row text-center light">
+          <h1>AdViz Control Panel</h1>
+        </div>
+      </header>
+      {{> subscribers_overview}}
+      {{> facebook_users}}
+      {{> facebook_messaging}}
+    </div>
   </body>
+
+  {{> footer}}
 </template>
-
-

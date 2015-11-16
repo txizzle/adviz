@@ -5,14 +5,33 @@
   </head>
 
   <body>
-    <div class="container">
-      <header>
-        <h1>Welcome to adViz</h1>
-        {{> loginButtons}}
+    <div id="splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>Welcome to adViz</h1>
+          </div>
+        </header>
+        <div class="row text-center">
+          <br>
+          {{> loginButtons}}
+        </div>
         {{#if currentUser}}
-          <h2>Logged in</h2>
+          <div class="row">
+            <br>
+
+            <div class="col-md-6 text-center" id="post-login">
+              <p>Thanks for logging in. This page is still under construction. Info text about adViz will go here.</p>
+            </div>
+            <div class="col-md-6 text-center">
+              <a class="vert-center" href="/admin">Control Panel</a>
+            </div>
+          </div>
+        {{else}}
+          Please log in!
         {{/if}}
-      </header>
+      </div>
     </div>
   </body>
+  {{> footer}}
 </template>

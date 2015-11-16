@@ -1,15 +1,20 @@
 <template name="facebook_users">
-  <p>How to add subscribers</p>
-  <ol>
-    <li>Search the name of the Facebook User</li>
-    <li>Find the Facebook ID of the correct Facebook User</li>
-    <li>Paste ID into 'Add Subscriber'</li>
-    <li>Send messages to subscriber via the Messaging Section</li>
-  </ol>
-  <form class="search-user">
-      <input type="text" name="text" placeholder="Type to search a user" />
-    <input type="submit" value="Find Facebook ID" />
-  </form>
+  <div class="row text-center light">
+    <br>
+    <p>How to add subscribers</p>
+    <ol>
+      <li>Search the name of the Facebook User</li>
+      <li>Find the Facebook ID of the correct Facebook User</li>
+      <li>Paste ID into 'Add Subscriber'</li>
+      <li>Send messages to subscriber via the Messaging Section</li>
+    </ol>
+  </div>
+  <div class="row text-center">
+    <form class="search-user">
+        <input type="text" name="text" placeholder="Type to search a user" />
+      <input type="submit" value="Find Facebook ID" />
+    </form>
+  </div>
   <table>
       <tr>
         <th>Name</th>
@@ -21,12 +26,13 @@
         {{> query}}
       {{/each}}
   </table>
-  
-  <form class="add-subscriber">
-    <input type="text" name="fb_id" placeholder="Facebook ID to Add" />
-    <input type="text" name="phone" placeholder="Phone #" />
-    <input type="submit" value="Add Subscriber" />
-  </form>
+  <div class="row text-center">
+    <form class="add-subscriber">
+      <input type="text" name="fb_id" placeholder="Facebook ID to Add" />
+      <input type="text" name="phone" placeholder="Phone #" />
+      <input type="submit" value="Add Subscriber" />
+    </form>
+  </div>
 </template>
 
 <template name="query">
