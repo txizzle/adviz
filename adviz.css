@@ -49,25 +49,7 @@ table {
   line-height: 50px;
 }
 
-#splash-info {
-  border-radius: 0px;
-  color: #50B73F ;
-  font-size: 20px;
-  background: rgba(0, 0, 0,0.2);
-  padding: 10px 20px 10px 20px;
-}
 
-#heatmap-user {
-  border-radius: 0px;
-  color: #50B73F ;
-  font-size: 20px;
-  padding: 30px 40px 30px 40px;
-  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url("/img/heatmap.jpg") no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
 
 /* Button Styling */
 button {
@@ -107,6 +89,7 @@ a:hover {
     text-decoration: none;
 }
 
+/* Formatting for various text boxes */
 #splash {
     width: 100%;
     height: calc(100% - 50px);
@@ -127,16 +110,24 @@ a:hover {
     -o-background-size: cover;
 }
 
-.light {
-    color: white;
+#splash-info {
+  border-radius: 0px;
+  color: #50B73F ;
+  font-size: 20px;
+  background: rgba(0, 0, 0,0.2);
+  padding: 10px 20px 10px 20px;
 }
 
-#info {
-    max-width: 50%;
-    margin: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+#heatmap-user {
+  border-radius: 0px;
+  color: #50B73F ;
+  font-size: 20px;
+  padding: 30px 40px 30px 40px;
+  background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ),url("/img/heatmap.jpg") no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
 .bordered {
@@ -148,29 +139,17 @@ a:hover {
     display:block;
 }
 
+
+/* Custom adViz primary color */
 .adviz-color {
     color: #50B73F;
     background-color: transparent;
 }
 
-#steps {
-    padding: none;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 5px;
+/* Custom light color */
+.light {
+    color: white;
 }
-
-.title-div {
-    height: 20%;
-    padding:10px;
-    margin: 0px;
-}
-
-.title {
-    display: inline-block;
-    vertical-align: middle;
-    line-height: normal;
-}
-
 
 h1 {
     font-size: 40px;
@@ -201,5 +180,12 @@ input {
   width: 800px;
   max-width: 100%;
   height: 400px;
+  max-height: 100%;
+}
+
+#crime-location-map {
+  width: 300px;
+  max-width: 100%;
+  height: 300px;
   max-height: 100%;
 }

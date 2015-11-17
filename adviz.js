@@ -4,7 +4,10 @@ Crimes = new Mongo.Collection("crimes");
 
 if (Meteor.isClient) {
   Meteor.startup(function() {
-    GoogleMaps.load();
+    GoogleMaps.load({
+      key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
+      libraries: 'places'
+    });
   });
   
   Template.subscribers_overview.helpers({
@@ -86,13 +89,62 @@ if (Meteor.isClient) {
       event.preventDefault();
       var type = event.target.type.value;
       var desc = event.target.desc.value;
+      var lat = event.target.lat.value;
+      var lng = event.target.lng.value;
+      var time = event.target.time.value;
       
       Crimes.insert({
               type: type,
-              desc: desc
+              desc: desc,
+              time: time,
+              lat: lat,
+              lng: lng
             });
       event.target.type.value = "";
       event.target.desc.value = "";
+    }
+  });
+  
+  Template.report_crime.onRendered(function() {
+    this.autorun(function () {
+      if (GoogleMaps.loaded()) {
+        $("#crime-location").geocomplete({
+          map: "#crime-location-map",
+          details: "form",
+          markerOptions: {
+            draggable: true
+          }
+        });
+        
+        $("#crime-location").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
+        });
+        
+        $("#reset").click(function(){
+          $("#crime-location").geocomplete("resetMarker");
+          $("#reset").hide();
+          return false;
+        });
+        
+        $("#find").click(function(){
+          $("#crime-location").trigger("geocode");
+        }).click();
+      }
+    });
+  });
+  
+  Template.report_crime.helpers({
+    crimeMapOptions: function() {
+      // Make sure the maps API has loaded
+      if (GoogleMaps.loaded()) {
+        // Map initialization options
+        return {
+          center: new google.maps.LatLng(17.6883, 83.2186),
+          zoom: 12
+        };
+      }
     }
   });
 }

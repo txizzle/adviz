@@ -46,10 +46,30 @@
     {{> googleMap name="crimeMap" options=crimeMapOptions}}
   </div>
 </template>
+
 <template name="report_crime">
   <form class="report-crime">
       <input type="text" name="type" placeholder="Type of Crime" />
       <input type="text" name="desc" placeholder="Description of Crime" />
+      <input type="time" name="time" />
+      <input id="crime-location" type="text" placeholder="Type in an address" value="Visakhapatnam, Andhra Pradesh, India" />
+      <input id="find" type="button" value="find" />
+      
+      <fieldset>
+        <label class="light">Latitude</label>
+        <input name="lat" type="text" value="">
+      
+        <label class="light">Longitude</label>
+        <input name="lng" type="text" value="">
+      
+        <label class="light">Formatted Address</label>
+        <input name="formatted_address" type="text" value="">
+      </fieldset>
+      
+      <a id="reset" href="#" style="display:none;">Reset Marker</a>
+    
       <input type="submit" value="Report Crime" />
+      
   </form>
+  <div id="crime-location-map"></div>
 </template>
