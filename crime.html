@@ -1,0 +1,47 @@
+<template name="crime">
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div id="splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>ad<span class="adviz-color">Viz</span> Crime Map</h1>
+          </div>
+        </header>
+        <div class="row text-center">
+          <br>
+          {{> loginButtons}}
+        </div>
+        {{#if currentUser}}
+          <div class="row">
+            <div class="col-md-6">
+              {{> map}}
+            </div>
+            <div class="col-md-6 text-center">
+              {{> report_crime}}
+            </div>
+          </div>
+        {{else}}
+          Please log in!
+        {{/if}}
+      </div>
+    </div>
+  </body>
+  {{> footer}}
+</template>
+
+<template name="map">
+  <div class="map-container">
+    {{> googleMap name="crimeMap" options=crimeMapOptions}}
+  </div>
+</template>
+<template name="report_crime">
+  <form class="report-crime">
+      <input type="text" name="type" placeholder="Type of Crime" />
+      <input type="text" name="desc" placeholder="Description of Crime" />
+      <input type="submit" value="Report Crime" />
+  </form>
+</template>

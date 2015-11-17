@@ -1,7 +1,12 @@
 Subscribers = new Mongo.Collection("subscribers");
 Queries = new Mongo.Collection("queries");
+Crimes = new Mongo.Collection("crimes");
 
 if (Meteor.isClient) {
+  Meteor.startup(function() {
+    GoogleMaps.load();
+  });
+  
   Template.subscribers_overview.helpers({
     subscribers: function() {
       return Subscribers.find({});
@@ -12,6 +17,30 @@ if (Meteor.isClient) {
     queries: function() {
       return Queries.find({});
     }
+  });
+
+  Template.map.helpers({
+    crimeMapOptions: function() {
+      // Make sure the maps API has loaded
+      if (GoogleMaps.loaded()) {
+        // Map initialization options
+        return {
+          center: new google.maps.LatLng(17.6883, 83.2186),
+          zoom: 12
+        };
+      }
+    }
+  });
+  
+  Template.map.onCreated(function() {
+    // We can use the `ready` callback to interact with the map API once the map is ready.
+    GoogleMaps.ready('crimeMap', function(map) {
+      // Add a marker to the map once it's ready
+      var marker = new google.maps.Marker({
+        position: map.options.center,
+        map: map.instance
+      });
+    });
   });
 
   Template.facebook_messaging.events({
@@ -49,6 +78,21 @@ if (Meteor.isClient) {
         console.log("Callback returned!");
       });
       event.target.text.value = "";
+    }
+  });
+  
+  Template.report_crime.events({
+    'submit .report-crime': function(event) {
+      event.preventDefault();
+      var type = event.target.type.value;
+      var desc = event.target.desc.value;
+      
+      Crimes.insert({
+              type: type,
+              desc: desc
+            });
+      event.target.type.value = "";
+      event.target.desc.value = "";
     }
   });
 }
@@ -164,3 +208,4 @@ Router.route('/', {
 });
 
 Router.route('/admin');
+Router.route('/crime');

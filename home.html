@@ -9,7 +9,7 @@
       <div class="container">
         <header>
           <div class="row text-center light">
-            <h1>Welcome to adViz</h1>
+            <h1>Welcome to ad<span class="adviz-color">Viz</span></h1>
           </div>
         </header>
         <div class="row text-center">
@@ -20,20 +20,37 @@
           <div class="row">
             <br>
             <div class="col-md-3"></div>
-            <div class="col-md-6 text-center" id="post-login">
+            <div class="col-md-6 text-center" id="splash-info">
               <p>Thanks for logging in. This page is still under construction. Info text about adViz will go here.</p>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 text-center">
-              <a class="vert-center" href="/admin">View Crime Map</a>
+              <a class="vert-center" href="/crime">View Crime Map</a>
             </div>
             <div class="col-md-6 text-center">
               <a class="vert-center" href="/admin">Admin Panel</a>
             </div>
           </div>
         {{else}}
-          Please log in!
+          <div class="row">
+            <br>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" id="splash-info">
+              <p><span class="light">ad</span>Viz is an application that enpowers you by keeping you <span class="adviz-color">safe</span>. </p>
+              <br>
+              
+              
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <p id="heatmap-user">We believe in transparent data paired with cutting-edge technology. We believe in a safer, more connected Vizag. </p>
+          </div>
+          
+        </div>
+        
         {{/if}}
       </div>
     </div>
