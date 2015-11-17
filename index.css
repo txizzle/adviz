@@ -93,9 +93,12 @@ div.iphone-mockup{
 }
 
 section.features{
+/*
   background-image:linear-gradient(to bottom, #74b97f, #4dc339 100%);
   background-repeat: no-repeat;
   background-attachment: fixed;
+*/
+  background-color: #74b97f;
   padding:40px 0;
   color:#fff;
 }
