@@ -204,8 +204,13 @@ if (Meteor.isServer) {
 }
 
 Router.route('/', {
-    template: 'home'
+    template: 'index'
 });
 
+Router.route('/home');
+
 Router.route('/admin');
+
 Router.route('/crime');
+
+Router.route('/index');

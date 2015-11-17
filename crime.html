@@ -25,12 +25,20 @@
             </div>
           </div>
         {{else}}
-          Please log in!
+          <div class="row">
+            <br>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" id="splash-info">
+              <p class="light">Please log in or sign up!</p>
+              <br>
+            </div>
+          </div>
         {{/if}}
       </div>
     </div>
+    {{> footer}}
   </body>
-  {{> footer}}
+  
 </template>
 
 <template name="map">
