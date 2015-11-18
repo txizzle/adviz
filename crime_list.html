@@ -1,0 +1,25 @@
+<template name="crime_list">
+    <div class="row text-center light">
+      <h2>Crimes</h2>
+    </div>
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Lat</th>
+        <th>Long</th>
+      </tr>
+      {{#each crimes}}
+        {{> crime}}
+      {{/each}}
+    </table>
+</template>
+
+<template name="crime">
+  <tr>
+    <td>{{type}}</td>
+    <td>{{desc}}</td>
+    <td>{{lat}}</td>
+    <td>{{lng}}</td>
+  </tr>
+</template>
