@@ -193,7 +193,7 @@ if (Meteor.isServer) {
       //TODO: parse phone number to make sure it is ########## without () or -
       var phone = "+1" + Subscribers.findOne({id: id}).phone
       client.messages.create({
-        from: "+17073982604",
+        from: "+13236723849",
         to: phone,
         body: message,
       }, function(err, res) {
