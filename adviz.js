@@ -263,6 +263,6 @@ Router.route('/home');
 
 Router.route('/admin');
 
-Router.route('/crime');
+Router.route('/crimemap');
 
 Router.route('/index');
