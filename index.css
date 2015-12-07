@@ -1,10 +1,33 @@
 .navbar{
   margin-bottom:0;
   border:none;
+  border-radius: 0px;
 }
 
 .navbar-brand .glyphicon{
   margin-right:6px;
+}
+
+
+.navbar-default {
+  background-color: black;
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #777;
+}
+
+.navbar-default .navbar-link {
+    color: white;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #777;
 }
 
 .hero{
@@ -20,6 +43,7 @@
     padding-right:30px;
   }
 }
+
 
 @media (max-width:992px) {
   .hero .get-it{
@@ -120,19 +144,27 @@ section.testimonials{
 }
 
 .site-footer{
-  padding:20px 0;
+  padding:5px 0;
   text-align:center;
+  color: white;
+  background-color: black;
+  
+}
+
+#footer-row {
+  margin: 0px;
+  text-align: center;
 }
 
 @media (min-width:768px) {
   .site-footer h5{
-    text-align:left;
+    text-align:center;
   }
 }
 
 .site-footer h5{
   color:inherit;
-  font-size:20px;
+  font-size:15px;
 }
 
 .site-footer .social-icons a:hover{
