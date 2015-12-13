@@ -32,6 +32,9 @@ table {
 
 
 /* Footer Styling */
+.site-footer {
+		height: 50px;
+}
 #footer {
     color: white;
     background-color: black;
