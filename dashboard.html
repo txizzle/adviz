@@ -4,6 +4,7 @@
   </head>
 
   <body>
+		{{>navbar}}
     <div id="dashboard-splash">
       <div class="container">
         <header>
@@ -11,9 +12,16 @@
             <h1>ad<span class="adviz-color">Viz</span> Web Application</h1>
           </div>
         </header>
-        <div class="row text-center">
-          <br>
-          {{> loginButtons}}
+        <div class="row-no-margin text-center">
+					{{#if currentUser}}
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<h3 class="adviz-styled-text">Signed in as {{currentUser.emails.[0].address}}</h3>	
+						</div>
+						{{else}}
+						<a class="adviz-btn" href="login">Login</a>
+						<a class="adviz-btn" href="register">Register</a>
+					{{/if}}
         </div>
 <!--        {{#if currentUser}}-->
           <div class="row">

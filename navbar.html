@@ -1,14 +1,19 @@
 <template name="navbar">
 	<nav class="navbar navbar-default">
 			<div class="container">
-					<div class="navbar-header"><a class="navbar-brand navbar-link" href="/"><span class="glyphicon glyphicon-phone"></span>adViz - A Safer Vizag</a>
+					<div class="navbar-header"><a class="navbar-brand navbar-link" href="/"><span class="glyphicon glyphicon-phone"></span>ad<span class="adviz-color">Viz</span> - A Safer Vizag</a>
 							<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 					</div>
 					<div class="collapse navbar-collapse" id="navcol-1">
 							<ul class="nav navbar-nav navbar-right">
 									<li role="presentation"><a href="/dashboard">Dashboard </a></li>
 									<li role="presentation"><a href="/admin">Admin Panel</a></li>
-									<li role="presentation"><a href="#">Login </a></li>
+									{{#if currentUser}}
+										<li role="presentation"><a class="logout" href="#">Logout</a></li>
+									{{else}}
+										<li role="presentation"><a href="login">Login </a></li>
+										<li role="presentation"><a href="register">Register</a></li>
+									{{/if}}
 							</ul>
 					</div>
 			</div>

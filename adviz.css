@@ -49,7 +49,17 @@ table {
   line-height: 50px;
 }
 
-
+.adviz-styled-text {
+	border-radius: 0px;
+	color: #50B73F ;
+	font-size: 16px;
+	background: rgba(0, 0, 0,0.2);
+	padding: 10px 20px 10px 20px;
+	border: solid #50B73F  2px;
+	text-decoration: none;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
 
 /* Button Styling */
 .adviz-btn {
@@ -157,6 +167,11 @@ input {
 .row {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.row-no-margin {
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .container {

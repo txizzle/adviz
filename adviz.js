@@ -88,6 +88,14 @@ if (Meteor.isClient) {
       });
     });
   });
+	
+	Template.navbar.events({
+    'click .logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+        Router.go('login');
+    }
+	});
 		
 	Template.login.events({
     'submit form': function(event) {
