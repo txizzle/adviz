@@ -8,42 +8,51 @@ if (Meteor.isClient) {
       key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
       libraries: 'places'
     });
+			
+		/* IronRouter routes */
+		Router.configure({
+			loadingTemplate: 'loading'
+		});
+			
 		Router.route('/', {
 			template: 'index'
 		});
 
-			
 		Router.route('/home');
-
 		Router.route('/admin');
-
 		Router.route('/crimemap');
-
 		Router.route('/index');
-
 		Router.route('/dashboard');
-
 		Router.route('/reportcrime');
-			
 		Router.route('/login');
-			
 		Router.route('/register');
-			
-		Router.route('afterLogin', {
-			path: '/',
-			onBeforeAction: function () {
-				if (! Meteor.user()) {
-					if (Meteor.loggingIn()) {
-					}
-					else{
-						Router.go('login');
-					}
-				}
-			}
-		});	
-			
   });
   
+//	Template.registerHelper('getBody', function () {
+//		return Session.get('loadingSplash') ? currPage : 'loading';
+//	});
+		
+	Template.loading.rendered = function () {
+		if ( ! Session.get('loadingSplash') ) {
+			console.log("Loading!!!");
+			this.loading = window.pleaseWait({
+				logo: '/img/adviz_logo.png',
+				backgroundColor: '#7f8c8d',
+				loadingHtml: message + spinner
+			});
+			Session.set('loadingSplash', true); // just show loading splash once
+		}
+	};
+
+	Template.loading.destroyed = function () {
+		if ( this.loading ) {
+			this.loading.finish();
+		}
+	};
+
+	var message = '<p class="loading-message">adViz is loading!</p>';
+	var spinner = '<div class="sk-spinner sk-spinner-rotating-plane"></div>';	
+	
   Template.subscribers_overview.helpers({
     subscribers: function() {
       return Subscribers.find({});

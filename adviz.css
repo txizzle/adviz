@@ -332,3 +332,15 @@ figure.effect-ruby:hover p {
 		max-width: 100%;
 }
 
+
+/* Spinners */
+.loading-message {
+  color: #fff;
+  font-size: 25px;
+  font-weight: 300;
+  font-family: sans-serif;
+}
+
+.sk-spinner-rotating-plane.sk-spinner {
+  background-color: #fff;
+}
