@@ -1,0 +1,22 @@
+<template name="register">
+	<head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>adViz Login</title>
+	</head>
+
+	<body>
+			{{>navbar}}
+			<div class="jumbotron hero" id="login-page">
+					<div class="login-card">
+						<h1 class="text-center">ad<span class="adviz-color">Viz</span> </h1>
+							<form class="form-signin">
+									<input class="form-control" type="email" required="" placeholder="Email address" autofocus="" id="inputEmail" name="loginEmail">
+									<input class="form-control" type="password" required="" placeholder="Password" id="inputPassword" name="loginPassword">
+									<button type="submit" value="Login" class="btn btn-primary btn-block btn-lg btn-signin" >Register</button>
+							</form>
+					</div>
+			</div>
+			{{>footer}}
+	</body>
+</template>

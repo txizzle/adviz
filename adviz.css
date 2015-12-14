@@ -32,9 +32,6 @@ table {
 
 
 /* Footer Styling */
-.site-footer {
-		height: 50px;
-}
 #footer {
     color: white;
     background-color: black;
@@ -317,3 +314,21 @@ figure.effect-ruby:hover p {
 	-webkit-transform: translate3d(0,0,0) scale(1);
 	transform: translate3d(0,0,0) scale(1);
 }
+
+/* Login page */
+#login-page {
+		height: calc(100% - 100px);
+}
+
+#inputEmail {
+		margin: 5px 0px 5px 0px;
+		width: 100%;
+		max-width: 100%;
+}
+
+#inputPassword {
+		margin: 0px 0px 5px 0px;
+		width: 100%;
+		max-width: 100%;
+}
+

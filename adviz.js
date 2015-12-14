@@ -12,6 +12,7 @@ if (Meteor.isClient) {
 			template: 'index'
 		});
 
+			
 		Router.route('/home');
 
 		Router.route('/admin');
@@ -23,6 +24,24 @@ if (Meteor.isClient) {
 		Router.route('/dashboard');
 
 		Router.route('/reportcrime');
+			
+		Router.route('/login');
+			
+		Router.route('/register');
+			
+		Router.route('afterLogin', {
+			path: '/',
+			onBeforeAction: function () {
+				if (! Meteor.user()) {
+					if (Meteor.loggingIn()) {
+					}
+					else{
+						Router.go('login');
+					}
+				}
+			}
+		});	
+			
   });
   
   Template.subscribers_overview.helpers({
@@ -60,6 +79,40 @@ if (Meteor.isClient) {
       });
     });
   });
+		
+	Template.login.events({
+    'submit form': function(event) {
+        event.preventDefault();
+        var emailVar = event.target.loginEmail.value;
+        var passwordVar = event.target.loginPassword.value;
+				Meteor.loginWithPassword(emailVar, passwordVar, function(error){
+						if(error){
+								alert(error.reason);
+						}
+						else {
+								Router.go("/dashboard");
+						}
+				});
+		}
+	});
+		
+	Template.register.events({
+    'submit form': function(event) {
+        event.preventDefault();
+        var emailVar = event.target.loginEmail.value;
+        var passwordVar = event.target.loginPassword.value;
+				Accounts.createUser({
+						email: emailVar,
+						password: passwordVar
+				}, function(error){
+						if(error){
+								alert(error.reason);
+						} else {
+								Router.go("/dashboard"); // Redirect user if registration succeeds
+						}
+				});
+		}
+	});
 
   Template.facebook_messaging.events({
     'submit .send-message': function(event) {
