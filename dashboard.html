@@ -1,0 +1,51 @@
+<template name="dashboard">
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div id="splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>ad<span class="adviz-color">Viz</span> Web Application</h1>
+          </div>
+        </header>
+        <div class="row text-center">
+          <br>
+          {{> loginButtons}}
+        </div>
+<!--        {{#if currentUser}}-->
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <a href="/crimemap" class="adviz-btn">Crime Map</a>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/reportcrime" class="adviz-btn">Report a Crime</a>
+            </div>
+						<div class="col-md-3 text-center">
+              <a href="#" class="adviz-btn">Crime Trends</a>
+            </div>
+						<div class="col-md-3 text-center">
+              <a href="#" class="adviz-btn">Get Alerts</a>
+            </div>
+          </div>
+<!--
+        {{else}}
+          <div class="row">
+            <br>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" id="splash-info">
+              <p class="light">Please log in or sign up!</p>
+              <br>
+            </div>
+          </div>
+        {{/if}}
+-->
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+  
+</template>
+

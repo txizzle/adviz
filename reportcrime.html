@@ -1,0 +1,65 @@
+<template name="reportcrime">
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <div id="splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>Report a Crime</h1>
+          </div>
+        </header>
+        <div class="row text-center">
+          <br>
+          {{> loginButtons}}
+        </div>
+<!--        {{#if currentUser}}-->
+          <div class="row">
+            <div class="col-md-6">
+							<div id="crime-location-map"></div>
+						</div>
+            <div class="col-md-6 text-center">
+              <form class="report-crime">
+								<input type="text" name="type" placeholder="Type of Crime" />
+								<input type="text" name="desc" placeholder="Description of Crime" />
+								<input type="time" name="time" />
+								<input id="crime-location" type="text" placeholder="Type in an address" value="Visakhapatnam, Andhra Pradesh, India" />
+								<input id="find" type="button" value="find" />
+
+								<fieldset>
+									<label class="light">Latitude</label>
+									<input name="lat" type="text" value="">
+
+									<label class="light">Longitude</label>
+									<input name="lng" type="text" value="">
+
+									<label class="light">Formatted Address</label>
+									<input name="formatted_address" type="text" value="">
+								</fieldset>
+
+								<a class="adviz-btn" id="reset" href="#" style="display:none;">Reset Marker</a>
+
+								<input class="adviz-btn" type="submit" value="Report Crime" />
+						</form>
+            </div>
+          </div>
+<!--
+        {{else}}
+          <div class="row">
+            <br>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" id="splash-info">
+              <p class="light">Please log in or sign up!</p>
+              <br>
+            </div>
+          </div>
+        {{/if}}
+-->
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+  
+</template>

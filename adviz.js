@@ -8,6 +8,21 @@ if (Meteor.isClient) {
       key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
       libraries: 'places'
     });
+		Router.route('/', {
+			template: 'index'
+		});
+
+		Router.route('/home');
+
+		Router.route('/admin');
+
+		Router.route('/crimemap');
+
+		Router.route('/index');
+
+		Router.route('/dashboard');
+
+		Router.route('/reportcrime');
   });
   
   Template.subscribers_overview.helpers({
@@ -22,20 +37,20 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.map.helpers({
+  Template.crimemap.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {
         // Map initialization options
         return {
           center: new google.maps.LatLng(17.6883, 83.2186),
-          zoom: 12
+          zoom: 16
         };
       }
     }
   });
   
-  Template.map.onCreated(function() {
+  Template.crimemap.onCreated(function() {
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('crimeMap', function(map) {
       // Add a marker to the map once it's ready
@@ -84,7 +99,7 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.report_crime.events({
+  Template.reportcrime.events({
     'submit .report-crime': function(event) {
       event.preventDefault();
       var type = event.target.type.value;
@@ -105,7 +120,7 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.report_crime.onRendered(function() {
+  Template.reportcrime.onRendered(function() {
     this.autorun(function () {
       if (GoogleMaps.loaded()) {
         $("#crime-location").geocomplete({
@@ -135,14 +150,15 @@ if (Meteor.isClient) {
     });
   });
   
-  Template.report_crime.helpers({
+  Template.reportcrime.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {
         // Map initialization options
         return {
           center: new google.maps.LatLng(17.6883, 83.2186),
-          zoom: 12
+          zoom: 16,
+					scrollwheel: true
         };
       }
     }
@@ -255,14 +271,4 @@ if (Meteor.isServer) {
   });
 }
 
-Router.route('/', {
-    template: 'index'
-});
 
-Router.route('/home');
-
-Router.route('/admin');
-
-Router.route('/crimemap');
-
-Router.route('/index');
