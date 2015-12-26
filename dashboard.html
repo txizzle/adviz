@@ -1,103 +1,173 @@
 <template name="dashboard">
-  <head>
-    <title>Home</title>
-  </head>
+	<div class="wrapper">
 
-  <body>
-		{{>navbar}}
-    <div id="dashboard-splash">
-      <div class="container">
-        <header>
-          <div class="row text-center light">
-            <h1>ad<span class="adviz-color">Viz</span> Web Application</h1>
-          </div>
-        </header>
-        <div class="row-no-margin text-center">
-					{{#if currentUser}}
-						<div class="col-md-4"></div>
-						<div class="col-md-4">
-							<h3 class="adviz-styled-text">Signed in as {{currentUser.emails.[0].address}}</h3>	
-						</div>
-						{{else}}
-						<a class="adviz-btn" href="login">Login</a>
-						<a class="adviz-btn" href="register">Register</a>
-					{{/if}}
-        </div>
-<!--        {{#if currentUser}}-->
-          <div class="row">
-							<div class="grid">
-									<figure class="effect-ruby">
-										<img src="/img/police.jpg" alt="police"/>
-										<figcaption>
-											<h2>Report <span>Crime</span></h2>
-											<p>Report crime in an efficient and secure way</p>
-											<a href="reportcrime">Click Here</a>
-										</figcaption>			
-									</figure>
-									<figure class="effect-ruby">
-										<img src="img/holding-map.jpg" alt="map"/>
-										<figcaption>
-											<h2>Crime <span>Map</span></h2>
-											<p>View our intelligent crime map</p>
-											<a href="crimemap">Click Here</a>
-										</figcaption>			
-									</figure>
-							</div>
-					</div>
-					<div class="row">
-							<div class="grid">
-									<figure class="effect-ruby">
-										<img src="img/holding-phone.jpg" alt="alerts"/>
-										<figcaption>
-											<h2>Set <span>Alerts</span></h2>
-											<p>Configure your alert settings</p>
-											<a href="#">Click Here</a>
-										</figcaption>			
-									</figure>
-									<figure class="effect-ruby">
-										<img src="img/india-street.jpg" alt="trends"/>
-										<figcaption>
-											<h2>Crime <span>Trends</span></h2>
-											<p>View crime trends</p>
-											<a href="#">Click Here</a>
-										</figcaption>			
-									</figure>
+		{{>dash_navbar}}
+		
+		{{>dash_sidebar}}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Page Header
+					<small>Optional description</small>
+				</h1>
+				<div class="row">
+					<div class="col-md-4">
+						<!-- Construct the box with style you want. Here we are using box-danger -->
+						<!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+						<!-- The contextual class should match the box, so we are using direct-chat-danger -->
+						<div class="box box-primary direct-chat direct-chat-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">adViz Bot</h3>
+								<div class="box-tools pull-right">
+									<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+<!--									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
 								</div>
-<!--
-						<div class="col-md-3"></div>
-            <div class="col-md-3 text-center">
-              <a href="/crimemap" class="adviz-btn">Crime Map</a>
-            </div>
-            <div class="col-md-3 text-center">
-              <a href="/reportcrime" class="adviz-btn">Report a Crime</a>
-            </div>
-					</div>
-					<div class="row">
-						<div class="col-md-3"></div>
-						<div class="col-md-3 text-center">
-              <a href="#" class="adviz-btn">Crime Trends</a>
-            </div>
-						<div class="col-md-3 text-center">
-              <a href="#" class="adviz-btn">Get Alerts</a>
-            </div>
--->
-          </div>
-<!--
-        {{else}}
-          <div class="row">
-            <br>
-            <div class="col-md-3"></div>
-            <div class="col-md-6 text-center" id="splash-info">
-              <p class="light">Please log in or sign up!</p>
-              <br>
-            </div>
-          </div>
-        {{/if}}
--->
-      </div>
-    </div>
-    {{> footer}}
-  </body>
-  
-</template>
+							</div><!-- /.box-header -->
+							<div class="box-body">
+								<!-- Conversations are loaded here -->
+								<div class="direct-chat-messages">
+									<!-- Message. Default to the left -->
+									<div class="direct-chat-msg">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-left">Solomon Darwin</span>
+											<span class="direct-chat-timestamp pull-right">10 Jan 2:00 pm</span>
+										</div><!-- /.direct-chat-info -->
+										<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
+										<div class="direct-chat-text">
+											Please text me if there is a robbery within two blocks of me from 8pm to midnight.
+										</div><!-- /.direct-chat-text -->
+									</div><!-- /.direct-chat-msg -->
 
+									<!-- Message to the right -->
+									<div class="direct-chat-msg right">
+										<div class="direct-chat-info clearfix">
+											<span class="direct-chat-name pull-right">adViz Bot</span>
+											<span class="direct-chat-timestamp pull-left">10 Jan 2:05 pm</span>
+										</div><!-- /.direct-chat-info -->
+										<img class="direct-chat-img" src="img/adviz_logo.png" alt="message user image"><!-- /.direct-chat-img -->
+										<div class="direct-chat-text">
+											Sure thing! Your custom alert has been set.
+										</div><!-- /.direct-chat-text -->
+									</div><!-- /.direct-chat-msg -->
+								</div><!--/.direct-chat-messages-->
+							</div><!-- /.box-body -->
+							<div class="box-footer">
+								<div class="input-group">
+									<input type="text" name="message" placeholder="Type Message ..." class="form-control">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-primary btn-flat">Send</button>
+									</span>
+								</div>
+							</div><!-- /.box-footer-->
+						</div><!--/.direct-chat -->
+
+					</div>
+				</div>
+				
+				
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Your Page Content Here -->
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">
+				Anything you want
+			</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2015 <a href="#">adViz</a>.</strong> All rights reserved.
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Create the tabs -->
+			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+				<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<!-- Home tab content -->
+				<div class="tab-pane active" id="control-sidebar-home-tab">
+					<h3 class="control-sidebar-heading">Recent Activity</h3>
+					<ul class="control-sidebar-menu">
+						<li>
+							<a href="javascript::;">
+								<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+									<p>Will be 23 on April 24th</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<!-- /.control-sidebar-menu -->
+
+					<h3 class="control-sidebar-heading">Tasks Progress</h3>
+					<ul class="control-sidebar-menu">
+						<li>
+							<a href="javascript::;">
+								<h4 class="control-sidebar-subheading">
+									Custom Template Design
+									<span class="label label-danger pull-right">70%</span>
+								</h4>
+
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<!-- /.control-sidebar-menu -->
+
+				</div>
+				<!-- /.tab-pane -->
+				<!-- Stats tab content -->
+				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+				<!-- /.tab-pane -->
+				<!-- Settings tab content -->
+				<div class="tab-pane" id="control-sidebar-settings-tab">
+					<form method="post">
+						<h3 class="control-sidebar-heading">General Settings</h3>
+
+						<div class="form-group">
+							<label class="control-sidebar-subheading">
+								Report panel usage
+								<input type="checkbox" class="pull-right" checked>
+							</label>
+
+							<p>
+								Some information about this general settings option
+							</p>
+						</div>
+						<!-- /.form-group -->
+					</form>
+				</div>
+				<!-- /.tab-pane -->
+			</div>
+		</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+				 immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+</template>

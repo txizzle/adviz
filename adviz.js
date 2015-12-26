@@ -22,16 +22,30 @@ if (Meteor.isClient) {
 		Router.route('/admin');
 		Router.route('/crimemap');
 		Router.route('/index');
-		Router.route('/dashboard');
+		Router.route('/olddashboard');
 		Router.route('/reportcrime');
 		Router.route('/login');
 		Router.route('/register');
+		Router.route('/dashboard');
   });
   
 //	Template.registerHelper('getBody', function () {
 //		return Session.get('loadingSplash') ? currPage : 'loading';
 //	});
-		
+	
+	Template.dashboard.onRendered(function () {
+			var self = this;
+			if (self.view.isRendered) {
+					var body = $('body');
+							body.removeClass();
+							body.addClass("skin-green sidebar-mini fixed");
+
+					$(function () {
+							MeteorAdminLTE.run()
+					});
+			}
+	});
+	
 	Template.loading.rendered = function () {
 		if ( ! Session.get('loadingSplash') ) {
 			console.log("Loading!!!");

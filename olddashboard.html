@@ -1,0 +1,103 @@
+<template name="olddashboard">
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+		{{>navbar}}
+    <div id="dashboard-splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>ad<span class="adviz-color">Viz</span> Web Application</h1>
+          </div>
+        </header>
+        <div class="row-no-margin text-center">
+					{{#if currentUser}}
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<h3 class="adviz-styled-text">Signed in as {{currentUser.emails.[0].address}}</h3>	
+						</div>
+						{{else}}
+						<a class="adviz-btn" href="login">Login</a>
+						<a class="adviz-btn" href="register">Register</a>
+					{{/if}}
+        </div>
+<!--        {{#if currentUser}}-->
+          <div class="row">
+							<div class="grid">
+									<figure class="effect-ruby">
+										<img src="/img/police.jpg" alt="police"/>
+										<figcaption>
+											<h2>Report <span>Crime</span></h2>
+											<p>Report crime in an efficient and secure way</p>
+											<a href="reportcrime">Click Here</a>
+										</figcaption>			
+									</figure>
+									<figure class="effect-ruby">
+										<img src="img/holding-map.jpg" alt="map"/>
+										<figcaption>
+											<h2>Crime <span>Map</span></h2>
+											<p>View our intelligent crime map</p>
+											<a href="crimemap">Click Here</a>
+										</figcaption>			
+									</figure>
+							</div>
+					</div>
+					<div class="row">
+							<div class="grid">
+									<figure class="effect-ruby">
+										<img src="img/holding-phone.jpg" alt="alerts"/>
+										<figcaption>
+											<h2>Set <span>Alerts</span></h2>
+											<p>Configure your alert settings</p>
+											<a href="#">Click Here</a>
+										</figcaption>			
+									</figure>
+									<figure class="effect-ruby">
+										<img src="img/india-street.jpg" alt="trends"/>
+										<figcaption>
+											<h2>Crime <span>Trends</span></h2>
+											<p>View crime trends</p>
+											<a href="#">Click Here</a>
+										</figcaption>			
+									</figure>
+								</div>
+<!--
+						<div class="col-md-3"></div>
+            <div class="col-md-3 text-center">
+              <a href="/crimemap" class="adviz-btn">Crime Map</a>
+            </div>
+            <div class="col-md-3 text-center">
+              <a href="/reportcrime" class="adviz-btn">Report a Crime</a>
+            </div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-3 text-center">
+              <a href="#" class="adviz-btn">Crime Trends</a>
+            </div>
+						<div class="col-md-3 text-center">
+              <a href="#" class="adviz-btn">Get Alerts</a>
+            </div>
+-->
+          </div>
+<!--
+        {{else}}
+          <div class="row">
+            <br>
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center" id="splash-info">
+              <p class="light">Please log in or sign up!</p>
+              <br>
+            </div>
+          </div>
+        {{/if}}
+-->
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+  
+</template>
+
