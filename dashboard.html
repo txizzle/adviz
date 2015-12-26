@@ -9,76 +9,21 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
-				<h1>
-					Page Header
-					<small>Optional description</small>
-				</h1>
-				<div class="row">
-					<div class="col-md-4">
-						<!-- Construct the box with style you want. Here we are using box-danger -->
-						<!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
-						<!-- The contextual class should match the box, so we are using direct-chat-danger -->
-						<div class="box box-primary direct-chat direct-chat-primary">
-							<div class="box-header with-border">
-								<h3 class="box-title">adViz Bot</h3>
-								<div class="box-tools pull-right">
-									<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-<!--									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
-								</div>
-							</div><!-- /.box-header -->
-							<div class="box-body">
-								<!-- Conversations are loaded here -->
-								<div class="direct-chat-messages">
-									<!-- Message. Default to the left -->
-									<div class="direct-chat-msg">
-										<div class="direct-chat-info clearfix">
-											<span class="direct-chat-name pull-left">Solomon Darwin</span>
-											<span class="direct-chat-timestamp pull-right">10 Jan 2:00 pm</span>
-										</div><!-- /.direct-chat-info -->
-										<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
-										<div class="direct-chat-text">
-											Please text me if there is a robbery within two blocks of me from 8pm to midnight.
-										</div><!-- /.direct-chat-text -->
-									</div><!-- /.direct-chat-msg -->
-
-									<!-- Message to the right -->
-									<div class="direct-chat-msg right">
-										<div class="direct-chat-info clearfix">
-											<span class="direct-chat-name pull-right">adViz Bot</span>
-											<span class="direct-chat-timestamp pull-left">10 Jan 2:05 pm</span>
-										</div><!-- /.direct-chat-info -->
-										<img class="direct-chat-img" src="img/adviz_logo.png" alt="message user image"><!-- /.direct-chat-img -->
-										<div class="direct-chat-text">
-											Sure thing! Your custom alert has been set.
-										</div><!-- /.direct-chat-text -->
-									</div><!-- /.direct-chat-msg -->
-								</div><!--/.direct-chat-messages-->
-							</div><!-- /.box-body -->
-							<div class="box-footer">
-								<div class="input-group">
-									<input type="text" name="message" placeholder="Type Message ..." class="form-control">
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-primary btn-flat">Send</button>
-									</span>
-								</div>
-							</div><!-- /.box-footer-->
-						</div><!--/.direct-chat -->
-
-					</div>
-				</div>
-				
-				
-				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-					<li class="active">Here</li>
-				</ol>
+					<h1>
+						Page Header
+						<small>Optional description</small>
+					</h1>
+					<ol class="breadcrumb">
+<!--						<li><a href=dashboard><i class="fa fa-dashboard"></i> Level</a></li>-->
+						<li class="active">Here</li>
+					</ol>
 			</section>
 
 			<!-- Main content -->
 			<section class="content">
 
 				<!-- Your Page Content Here -->
-
+				{{>dash_overview}}
 			</section>
 			<!-- /.content -->
 		</div>
