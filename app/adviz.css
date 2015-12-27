@@ -364,3 +364,8 @@ figure.effect-ruby:hover p {
 #dash-title {
 	font-size: 30px;
 }
+
+/* Report Crime */
+.rc {
+	min-height: calc(100% - 100px);
+}

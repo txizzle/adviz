@@ -20,25 +20,50 @@ if (Meteor.isClient) {
 
 		Router.route('/home');
 		Router.route('/admin');
-		Router.route('/crimemap');
+		Router.route('/crimemap', function() {
+			Session.set('dashPage', 'map');
+			this.render('crimemap');
+		});
 		Router.route('/index');
 		Router.route('/olddashboard');
-		Router.route('/reportcrime');
+		Router.route('/reportcrime', function() {
+			Session.set('dashPage', 'report');
+			this.render('reportcrime');
+		});
 		Router.route('/login');
 		Router.route('/register');
-		Router.route('/dashboard');
+		Router.route('/dashboard', function() {
+			Session.set('dashPage', 'overview');
+			this.render('dashboard');
+		});
   });
+	
+	/* Dashboard Session Variable Initialization */
+	Session.set('dashPage', 'overview');
   
 //	Template.registerHelper('getBody', function () {
 //		return Session.get('loadingSplash') ? currPage : 'loading';
 //	});
+	
+	Template.registerHelper('isOverview', function(input){
+		return Session.get("dashPage") === 'overview';
+	});
+	
+	Template.registerHelper('isMap', function(input){
+		return Session.get("dashPage") === 'map';
+	});
+	
+	Template.registerHelper('isReport', function(input){
+		return Session.get("dashPage") === 'report';
+	});
+	
 	
 	Template.dashboard.onRendered(function () {
 			var self = this;
 			if (self.view.isRendered) {
 					var body = $('body');
 							body.removeClass();
-							body.addClass("skin-green sidebar-mini fixed");
+							body.addClass("skin-green sidebar-mini");
 
 					$(function () {
 							MeteorAdminLTE.run()

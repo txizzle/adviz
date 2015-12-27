@@ -1,22 +1,29 @@
 <template name="reportcrime">
-  <head>
-    <title>Home</title>
-  </head>
+	<div class="wrapper">
 
-  <body>
-    <div id="splash">
-      <div class="container">
-        <header>
-          <div class="row text-center light">
-            <h1>Report a Crime</h1>
-          </div>
-        </header>
-        <div class="row text-center">
-          <br>
-          {{> loginButtons}}
-        </div>
-<!--        {{#if currentUser}}-->
-          <div class="row">
+		{{>dash_navbar}}
+		
+		{{>dash_sidebar}}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+					<h1>
+						Report a Crime
+						<small>Secure, Anonymous, Effective</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li><a href=dashboard><i class="fa fa-dashboard"></i> Dashboard</a></li>
+						<li class="active"><i class="fa fa-flag"></i>Report Crime</li>
+					</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Your Page Content Here -->
+				<div class="row rc">
             <div class="col-md-6">
 							<div id="crime-location-map"></div>
 						</div>
@@ -40,26 +47,28 @@
 								</fieldset>
 
 								<a class="adviz-btn" id="reset" href="#" style="display:none;">Reset Marker</a>
-
-								<input class="adviz-btn" type="submit" value="Report Crime" />
+								 <button type="submit" class="btn btn-success btn-flat">Report Crime</button>
 						</form>
             </div>
           </div>
-<!--
-        {{else}}
-          <div class="row">
-            <br>
-            <div class="col-md-3"></div>
-            <div class="col-md-6 text-center" id="splash-info">
-              <p class="light">Please log in or sign up!</p>
-              <br>
-            </div>
-          </div>
-        {{/if}}
--->
-      </div>
-    </div>
-    {{> footer}}
-  </body>
-  
+					<!-- /.row -->
+				
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">
+				Made by UC Berkeley students for the citizens of Visakhapatnam.
+			</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2015 <a href="#">ad<b>Viz</b></a>.</strong> All rights reserved.
+		</footer>
+
+		{{>dash_control_sidebar}}
+	</div>
+	<!-- ./wrapper -->
 </template>

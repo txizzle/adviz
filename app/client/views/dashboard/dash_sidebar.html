@@ -33,11 +33,22 @@
 				<ul class="sidebar-menu">
 					<li class="header">DASHBOARD</li>
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active"><a href="dashboard"><i class="fa fa-home"></i> <span>Overview</span></a></li>
-					
-					<li><a href="crimemap"><i class="fa fa-map-marker"></i> <span>Crime Map</span></a></li>
+					{{#if isOverview}}
+						<li class="active"><a href="dashboard"><i class="fa fa-home"></i> <span>Overview</span></a></li>
+					{{else}}
+						<li><a href="dashboard"><i class="fa fa-home"></i> <span>Overview</span></a></li>
+					{{/if}}
+					{{#if isMap}}
+						<li class="active"><a href="crimemap"><i class="fa fa-map-marker"></i> <span>Crime Map</span></a></li>
+					{{else}}
+						<li><a href="crimemap"><i class="fa fa-map-marker"></i> <span>Crime Map</span></a></li>
+					{{/if}}
 					<li><a href="#"><i class="fa fa-line-chart"></i> <span>Crime Trends</span></a></li>
-					<li><a href="reportcrime"><i class="fa fa-flag-o"></i> <span>Report Crime</span></a></li>
+					{{#if isReport}}
+						<li class="active"><a href="reportcrime"><i class="fa fa-flag-o"></i> <span>Report Crime</span></a></li>
+					{{else}}
+						<li><a href="reportcrime"><i class="fa fa-flag-o"></i> <span>Report Crime</span></a></li>
+					{{/if}}
 					<li><a href="#"><i class="fa fa-comment"></i> <span>Ask a Question</span></a></li>
 					<li class="treeview">
 						<a href="#"><i class="fa fa-user"></i> <span>My Account</span> <i class="fa fa-angle-left pull-right"></i></a>
