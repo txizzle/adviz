@@ -1,0 +1,169 @@
+<template name="dash_overview">
+	<!-- Small boxes (Stat box) -->
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+			<div class="row">
+				<a href="crimemap" class="col-md-6">
+					<!-- small box -->
+						<div class="small-box bg-yellow">
+							<div class="inner">
+								<h3 id="dash-title">Crime Map</h3>
+
+								<p>Realtime</p>
+							</div>
+							<div class="icon">
+								<i class="fa fa-map-marker"></i>
+							</div>
+							<p class="small-box-footer">
+								View Map <i class="fa fa-arrow-circle-right"></i>
+							</p>
+						</div>
+				</a>
+				<a href="#" class="col-md-6">
+					<!-- small box -->
+					<div class="small-box bg-olive">
+						<div class="inner">
+							<h3 id="dash-title">Crime Trends</h3>
+
+							<p>Visualized</p>
+						</div>
+						<div class="icon">
+							<i class="fa fa-line-chart"></i>
+						</div>
+						<p class="small-box-footer">
+							See Trends <i class="fa fa-arrow-circle-right"></i>
+						</p>
+					</div>
+				</a>
+				<!-- ./col -->
+			</div>
+			<!-- ./row -->
+			<div class="row">
+				<a href="reportcrime" class="col-md-6">
+					<!-- small box -->
+					<div class="small-box bg-aqua">
+						<div class="inner">
+							<h3 id="dash-title">Report Crime</h3>
+
+							<p>Confidential</p>
+						</div>
+						<div class="icon">
+							<i class="fa fa-flag"></i>
+						</div>
+						<p class="small-box-footer">
+							Report Now <i class="fa fa-arrow-circle-right"></i>
+						</p>
+					</div>
+				</a>
+				<a href="#" class="col-md-6">
+					<!-- small box -->
+					<div class="small-box bg-red">
+						<div class="inner">
+							<h3 id="dash-title">Set Alerts</h3>
+
+							<p>Personalized</p>
+						</div>
+						<div class="icon">
+							<i class="fa fa-exclamation-circle"></i>
+						</div>
+						<p class="small-box-footer">
+							Customize Alerts <i class="fa fa-arrow-circle-right"></i>
+						</p>
+					</div>
+				</a>
+			</div>
+			<!-- ./row -->
+			<!-- ./row -->
+			<div class="row">
+				<a href="#" class="col-md-6">
+					<!-- small box -->
+					<div class="small-box bg-purple">
+						<div class="inner">
+							<h3 id="dash-title">Past Alerts</h3>
+
+							<p>Personalized</p>
+						</div>
+						<div class="icon">
+							<i class="fa fa-history"></i>
+						</div>
+						<p class="small-box-footer">
+							View Alerts <i class="fa fa-arrow-circle-right"></i>
+						</p>
+					</div>
+				</a>
+				<a href="#" class="col-md-6">
+					<!-- small box -->
+					<div class="small-box bg-orange">
+						<div class="inner">
+							<h3 id="dash-title">Settings</h3>
+
+							<p>Private</p>
+						</div>
+						<div class="icon">
+							<i class="fa fa-cogs"></i>
+						</div>
+						<p class="small-box-footer">
+							Go to Profile <i class="fa fa-arrow-circle-right"></i>
+						</p>
+					</div>
+				</a>
+			</div>
+			<!-- ./row -->
+		</div>
+		<!-- ./col -->
+		
+		<div class="col-md-6 col-xs-12">
+			<!-- Construct the box with style you want. Here we are using box-danger -->
+			<!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+			<!-- The contextual class should match the box, so we are using direct-chat-danger -->
+			<div class="box box-success box-solid direct-chat direct-chat-success">
+				<div class="box-header with-border">
+					<h3 class="box-title">adViz Bot</h3>
+					<div class="box-tools pull-right">
+						<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+<!--									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+					</div>
+				</div><!-- /.box-header -->
+				<div class="box-body">
+					<!-- Conversations are loaded here -->
+					<div class="direct-chat-messages">
+						<!-- Message to the right -->
+						<div class="direct-chat-msg right">
+							<div class="direct-chat-info clearfix">
+								<span class="direct-chat-name pull-right">Solomon Darwin</span>
+								<span class="direct-chat-timestamp pull-left">10 Jan 2:00 pm</span>
+							</div><!-- /.direct-chat-info -->
+							<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
+							<div class="direct-chat-text">
+								Please text me if there is a robbery within two blocks of me from 8pm to midnight.
+							</div><!-- /.direct-chat-text -->
+						</div><!-- /.direct-chat-msg -->
+						
+						<!-- Message. Default to the left -->
+						<div class="direct-chat-msg">
+							<div class="direct-chat-info clearfix">
+								<span class="direct-chat-name pull-left">adViz Bot</span>
+								<span class="direct-chat-timestamp pull-right">10 Jan 2:05 pm</span>
+							</div><!-- /.direct-chat-info -->
+							<img class="direct-chat-img" src="img/shield.png" alt="message user image"><!-- /.direct-chat-img -->
+							<div class="direct-chat-text">
+								Sure thing! Your custom alert has been set.
+							</div><!-- /.direct-chat-text -->
+						</div><!-- /.direct-chat-msg -->
+
+					</div><!--/.direct-chat-messages-->
+				</div><!-- /.box-body -->
+				<div class="box-footer">
+					<div class="input-group">
+						<input type="text" name="message" placeholder="Type Message ..." class="form-control">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-success btn-flat">Send</button>
+						</span>
+					</div>
+				</div><!-- /.box-footer-->
+			</div><!--/.direct-chat -->
+
+		</div>
+	</div>
+
+</template>

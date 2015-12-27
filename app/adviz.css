@@ -164,8 +164,8 @@ input {
 
 /* Bootstrap overwrite */
 .row {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .row-no-margin {
@@ -357,4 +357,10 @@ figure.effect-ruby:hover p {
 
 .sk-spinner-rotating-plane.sk-spinner {
   background-color: #fff;
+}
+
+
+/* Dashboard */
+#dash-title {
+	font-size: 30px;
 }
