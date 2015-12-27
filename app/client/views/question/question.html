@@ -1,0 +1,156 @@
+<template name="question">
+	<div class="wrapper">
+
+		{{>dash_navbar}}
+		
+		{{>dash_sidebar}}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+					<h1>
+						Ask a Question
+						<small>Secure, Personalized, Effective</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li><a href=dashboard><i class="fa fa-dashboard"></i> Dashboard</a></li>
+						<li class="active"><i class="fa fa-user"></i>Ask a Question</li>
+					</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Your Page Content Here -->
+				<div class="row">
+            <div class="col-md-6">
+								<div class="box box-warning box-solid direct-chat direct-chat-warning">
+									<div class="box-header with-border">
+										<h3 class="box-title">Vizag Police</h3>
+										<div class="box-tools pull-right">
+											<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+					<!--									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+										</div>
+									</div><!-- /.box-header -->
+									<div class="box-body">
+										<!-- Conversations are loaded here -->
+										<div class="direct-chat-messages">
+											<!-- Message. Default to the left -->
+											<div class="direct-chat-msg">
+												<div class="direct-chat-info clearfix">
+													<span class="direct-chat-name pull-left">Inspector Konda</span>
+													<span class="direct-chat-timestamp pull-right">10 Jan 1:29 pm</span>
+												</div><!-- /.direct-chat-info -->
+												<img class="direct-chat-img" src="img/police_officer.jpg" alt="message user image"><!-- /.direct-chat-img -->
+												<div class="direct-chat-text">
+													Hello, Mr. Darwin. How may I help you today?
+												</div><!-- /.direct-chat-text -->
+											</div><!-- /.direct-chat-msg -->
+											
+											<!-- Message to the right -->
+											<div class="direct-chat-msg right">
+												<div class="direct-chat-info clearfix">
+													<span class="direct-chat-name pull-right">Solomon Darwin</span>
+													<span class="direct-chat-timestamp pull-left">10 Jan 1:30 pm</span>
+												</div><!-- /.direct-chat-info -->
+												<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
+												<div class="direct-chat-text">
+													I would like to give the Police Superintendent feedback regarding the recent robbery spree in my neighborhood.
+												</div><!-- /.direct-chat-text -->
+											</div><!-- /.direct-chat-msg -->
+
+											<!-- Message. Default to the left -->
+											<div class="direct-chat-msg">
+												<div class="direct-chat-info clearfix">
+													<span class="direct-chat-name pull-left">Inspector Konda</span>
+													<span class="direct-chat-timestamp pull-right">10 Jan 1:32 pm</span>
+												</div><!-- /.direct-chat-info -->
+												<img class="direct-chat-img" src="img/police_officer.jpg" alt="message user image"><!-- /.direct-chat-img -->
+												<div class="direct-chat-text">
+													Of course! What is your feedback?
+												</div><!-- /.direct-chat-text -->
+											</div><!-- /.direct-chat-msg -->
+
+										</div><!--/.direct-chat-messages-->
+									</div><!-- /.box-body -->
+									<div class="box-footer">
+										<div class="input-group">
+											<input type="text" name="message" placeholder="Type Message ..." class="form-control">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-warning btn-flat">Send</button>
+											</span>
+										</div>
+									</div><!-- /.box-footer-->
+								</div><!--/.direct-chat -->
+						</div>
+            <div class="col-md-6">
+							<div class="box box-success box-solid direct-chat direct-chat-success">
+								<div class="box-header with-border">
+									<h3 class="box-title">adViz Bot</h3>
+									<div class="box-tools pull-right">
+										<button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				<!--									<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+									</div>
+								</div><!-- /.box-header -->
+								<div class="box-body">
+									<!-- Conversations are loaded here -->
+									<div class="direct-chat-messages">
+										<!-- Message to the right -->
+										<div class="direct-chat-msg right">
+											<div class="direct-chat-info clearfix">
+												<span class="direct-chat-name pull-right">Solomon Darwin</span>
+												<span class="direct-chat-timestamp pull-left">10 Jan 2:00 pm</span>
+											</div><!-- /.direct-chat-info -->
+											<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
+											<div class="direct-chat-text">
+												Please text me if there is a robbery within two blocks of me from 8pm to midnight.
+											</div><!-- /.direct-chat-text -->
+										</div><!-- /.direct-chat-msg -->
+
+										<!-- Message. Default to the left -->
+										<div class="direct-chat-msg">
+											<div class="direct-chat-info clearfix">
+												<span class="direct-chat-name pull-left">adViz Bot</span>
+												<span class="direct-chat-timestamp pull-right">10 Jan 2:05 pm</span>
+											</div><!-- /.direct-chat-info -->
+											<img class="direct-chat-img" src="img/shield.png" alt="message user image"><!-- /.direct-chat-img -->
+											<div class="direct-chat-text">
+												Sure thing! Your custom alert has been set.
+											</div><!-- /.direct-chat-text -->
+										</div><!-- /.direct-chat-msg -->
+
+									</div><!--/.direct-chat-messages-->
+								</div><!-- /.box-body -->
+								<div class="box-footer">
+									<div class="input-group">
+										<input type="text" name="message" placeholder="Type Message ..." class="form-control">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-success btn-flat">Send</button>
+										</span>
+									</div>
+								</div><!-- /.box-footer-->
+							</div><!--/.direct-chat -->
+            </div>
+          </div>
+					<!-- /.row -->
+				
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">
+				Made by UC Berkeley students for the citizens of Visakhapatnam.
+			</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2015 <a href="#">ad<b>Viz</b></a>.</strong> All rights reserved.
+		</footer>
+
+		{{>dash_control_sidebar}}
+	</div>
+	<!-- ./wrapper -->
+</template>

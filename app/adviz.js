@@ -30,6 +30,10 @@ if (Meteor.isClient) {
 			Session.set('dashPage', 'report');
 			this.render('reportcrime');
 		});
+		Router.route('/question', function() {
+			Session.set('dashPage', 'question');
+			this.render('question');
+		})
 		Router.route('/login');
 		Router.route('/register');
 		Router.route('/dashboard', function() {
@@ -57,8 +61,51 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'report';
 	});
 	
+	Template.registerHelper('isQuestion', function(input){
+		return Session.get("dashPage") === 'question';
+	});
+	
 	
 	Template.dashboard.onRendered(function () {
+			var self = this;
+			if (self.view.isRendered) {
+					var body = $('body');
+							body.removeClass();
+							body.addClass("skin-green sidebar-mini");
+
+					$(function () {
+							MeteorAdminLTE.run()
+					});
+			}
+	});
+	
+	Template.question.onRendered(function () {
+			var self = this;
+			if (self.view.isRendered) {
+					var body = $('body');
+							body.removeClass();
+							body.addClass("skin-green sidebar-mini");
+
+					$(function () {
+							MeteorAdminLTE.run()
+					});
+			}
+	});
+	
+	Template.reportcrime.onRendered(function () {
+			var self = this;
+			if (self.view.isRendered) {
+					var body = $('body');
+							body.removeClass();
+							body.addClass("skin-green sidebar-mini");
+
+					$(function () {
+							MeteorAdminLTE.run()
+					});
+			}
+	});
+	
+	Template.crimemap.onRendered(function () {
 			var self = this;
 			if (self.view.isRendered) {
 					var body = $('body');
