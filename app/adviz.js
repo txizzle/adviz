@@ -6,13 +6,19 @@ if (Meteor.isClient) {
   Meteor.startup(function() {
     GoogleMaps.load({
       key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
-      libraries: 'places'
+      libraries: 'places,visualization'
     });
 			
 		/* IronRouter routes */
 		Router.configure({
 			loadingTemplate: 'loading'
 		});
+		
+		
+		Router.onBeforeAction(function() {
+			GoogleMaps.load({libraries: 'visualization' });
+			this.next();
+		}, { only: ['crime_map', 'crimeMap'] });
 			
 		Router.route('/', {
 			template: 'index'
@@ -183,20 +189,64 @@ if (Meteor.isClient) {
   
   Template.crime_map.onCreated(function() {
     // We can use the `ready` callback to interact with the map API once the map is ready.
+		GoogleMaps.load({libraries: 'visualization' });
+//		https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization&sensor=true_or_false"
     GoogleMaps.ready('crimeMap', function(map) {
       // Add a marker to the map once it's ready
+			data = Crimes.find({});
+			
+			data.forEach(function (row) {
+				var marker = new google.maps.Marker({
+        	position: {lat: row.lat*1, lng: row.lng*1},
+        	map: map.instance,
+					icon: {
+						path: google.maps.SymbolPath.CIRCLE,
+						scale: 4,
+						fillColor: 'black',
+						strokeColor: 'black'
+					}
+      	});
+			});
+			
 			var sampleCrimes = [
-				[17.6893, 83.2186],
-				[17.6883, 83.2196],
-				[17.6886, 83.2189],
-				[17.6890, 83.2170]
+				new google.maps.LatLng(17.6886, 83.2189),
+				new google.maps.LatLng(17.6886, 83.2193),
+				new google.maps.LatLng(17.6890, 83.2130),
+				new google.maps.LatLng(17.6891, 83.2340),
+				new google.maps.LatLng(17.6820, 83.2750),
+				new google.maps.LatLng(17.6830, 83.2160),
+				new google.maps.LatLng(17.6834, 83.2683),
+				new google.maps.LatLng(17.6842, 83.2172),
+				new google.maps.LatLng(17.6701, 83.2501),
+				new google.maps.LatLng(17.6823, 83.2420),
+				new google.maps.LatLng(17.6810, 83.2021),
+				new google.maps.LatLng(17.6814, 83.2101),
+				new google.maps.LatLng(17.6890, 83.2289),
+				new google.maps.LatLng(17.6912, 83.1402),
+				new google.maps.LatLng(17.6920, 83.1920)
 			]
+			
+			var crimeArray = new google.maps.MVCArray(sampleCrimes);
+			
 			for (var i = 0; i < sampleCrimes.length; i++) {
 				var marker = new google.maps.Marker({
-        	position: {lat: sampleCrimes[i][0], lng: sampleCrimes[i][1]},
-        	map: map.instance
+        	position: sampleCrimes[i],
+        	map: map.instance,
+					icon: {
+						path: google.maps.SymbolPath.CIRCLE,
+						scale: 4,
+						fillColor: 'black',
+						strokeColor: 'black'
+					}
       	});
 			}
+			
+			var heatMapLayer = new google.maps.visualization.HeatmapLayer({
+				data: crimeArray,
+				radius: 50
+			});
+			
+			heatMapLayer.setMap(map.instance);
     });
   });
 	
