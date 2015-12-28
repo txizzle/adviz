@@ -54,14 +54,16 @@
 					{{else}}
 						<li><a href="question"><i class="fa fa-comment"></i> <span>Ask a Question</span></a></li>
 					{{/if}}
-					<li class="treeview">
-						<a href="#"><i class="fa fa-user"></i> <span>My Account</span> <i class="fa fa-angle-left pull-right"></i></a>
-						<ul class="treeview-menu">
-							<li><a href="#">Past Alerts</a></li>
-							<li><a href="#">Configure Personal Alerts</a></li>
-							<li><a href="#">My Profile</a></li>
-						</ul>
-					</li>
+					{{#if isAlert}}
+						<li class="active"><a href="#"><i class="fa fa-exclamation-triangle"></i> <span>View Alert History</span></a></li>
+					{{else}}
+						<li><a href="#"><i class="fa fa-exclamation-triangle"></i> <span>View Alert History</span></a></li>
+					{{/if}}
+					{{#if isAccount}}
+						<li class="active"><a href="#"><i class="fa fa-user"></i> <span>Account Settings</span></a></li>
+					{{else}}
+						<li><a href="#"><i class="fa fa-user"></i> <span>Account Settings</span></a></li>
+					{{/if}}
 					<li><a href="olddashboard"><i class="fa fa-desktop"></i> <span>Old Dashboard [Temporary]</span></a></li>
 				</ul>
 				<!-- /.sidebar-menu -->

@@ -22,17 +22,26 @@ if (Meteor.isClient) {
 		Router.route('/admin');
 		Router.route('/crimemap', function() {
 			Session.set('dashPage', 'map');
-			this.render('crimemap');
+			this.render('crime_map');
 		});
 		Router.route('/index');
 		Router.route('/olddashboard');
+		Router.route('/oldcrimemap');
 		Router.route('/reportcrime', function() {
 			Session.set('dashPage', 'report');
-			this.render('reportcrime');
+			this.render('report_crime');
 		});
 		Router.route('/question', function() {
 			Session.set('dashPage', 'question');
 			this.render('question');
+		});
+		Router.route('/alert', function() {
+			Session.set('dashPage', 'alert');
+			this.render('past_alerts');
+		});
+		Router.route('/account', function() {
+			Session.set('dashPage', 'account');
+			this.render('profile');
 		})
 		Router.route('/login');
 		Router.route('/register');
@@ -65,6 +74,14 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'question';
 	});
 	
+	Template.registerHelper('isAccount', function(input){
+		return Session.get("dashPage") === 'account';
+	});
+	
+	Template.registerHelper('isAlert', function(input){
+		return Session.get("dashPage") === 'alert';
+	});
+	
 	
 	Template.dashboard.onRendered(function () {
 			var self = this;
@@ -92,7 +109,7 @@ if (Meteor.isClient) {
 			}
 	});
 	
-	Template.reportcrime.onRendered(function () {
+	Template.report_crime.onRendered(function () {
 			var self = this;
 			if (self.view.isRendered) {
 					var body = $('body');
@@ -105,7 +122,7 @@ if (Meteor.isClient) {
 			}
 	});
 	
-	Template.crimemap.onRendered(function () {
+	Template.crime_map.onRendered(function () {
 			var self = this;
 			if (self.view.isRendered) {
 					var body = $('body');
@@ -151,7 +168,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.crimemap.helpers({
+  Template.crime_map.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {
@@ -164,14 +181,22 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.crimemap.onCreated(function() {
+  Template.crime_map.onCreated(function() {
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('crimeMap', function(map) {
       // Add a marker to the map once it's ready
-      var marker = new google.maps.Marker({
-        position: map.options.center,
-        map: map.instance
-      });
+			var sampleCrimes = [
+				[17.6893, 83.2186],
+				[17.6883, 83.2196],
+				[17.6886, 83.2189],
+				[17.6890, 83.2170]
+			]
+			for (var i = 0; i < sampleCrimes.length; i++) {
+				var marker = new google.maps.Marker({
+        	position: {lat: sampleCrimes[i][0], lng: sampleCrimes[i][1]},
+        	map: map.instance
+      	});
+			}
     });
   });
 	
@@ -202,15 +227,20 @@ if (Meteor.isClient) {
 	Template.register.events({
     'submit form': function(event) {
         event.preventDefault();
+				var firstVar = event.target.firstName.value;
+				var lastVar = event.target.lastName.value;
         var emailVar = event.target.loginEmail.value;
         var passwordVar = event.target.loginPassword.value;
 				Accounts.createUser({
+						first: firstVar,
+						last: lastVar,
 						email: emailVar,
 						password: passwordVar
 				}, function(error){
 						if(error){
 								alert(error.reason);
 						} else {
+								console.log("Sending to dashboard");
 								Router.go("/dashboard"); // Redirect user if registration succeeds
 						}
 				});
@@ -255,7 +285,7 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.reportcrime.events({
+  Template.report_crime.events({
     'submit .report-crime': function(event) {
       event.preventDefault();
       var type = event.target.type.value;
@@ -273,10 +303,11 @@ if (Meteor.isClient) {
             });
       event.target.type.value = "";
       event.target.desc.value = "";
+			event.target.time.value = "";
     }
   });
   
-  Template.reportcrime.onRendered(function() {
+  Template.report_crime.onRendered(function() {
     this.autorun(function () {
       if (GoogleMaps.loaded()) {
         $("#crime-location").geocomplete({
@@ -306,7 +337,7 @@ if (Meteor.isClient) {
     });
   });
   
-  Template.reportcrime.helpers({
+  Template.report_crime.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {

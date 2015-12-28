@@ -1,0 +1,40 @@
+<template name="oldcrimemap">
+  
+	<head>
+    <title>Home</title>
+  </head>
+
+  <body>
+		{{>navbar}}
+    <div id="splash">
+      <div class="container">
+        <header>
+          <div class="row text-center light">
+            <h1>ad<span class="adviz-color">Viz</span> Crime Map</h1>
+          </div>
+        </header>
+        <div class="row text-center">
+					{{#if currentUser}}
+						<div class="col-md-4"></div>
+						<div class="col-md-4">
+							<h3 class="adviz-styled-text">Signed in as {{currentUser.emails.[0].address}}</h3>	
+						</div>
+						{{else}}
+						<a class="adviz-btn" href="login">Login</a>
+						<a class="adviz-btn" href="register">Register</a>
+					{{/if}}
+        </div>
+<!--        {{#if currentUser}}-->
+          <div class="row">
+						<div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+							<div class="map-container">
+								{{> googleMap name="crimeMap" options=crimeMapOptions}}
+							</div>
+            </div>
+          </div>
+      </div>
+    </div>
+    {{> footer}}
+  </body>
+</template>

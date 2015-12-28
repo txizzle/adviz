@@ -10,11 +10,14 @@
 			<div class="jumbotron hero" id="login-page">
 					<div class="login-card">
 						<h1 class="text-center">ad<span class="adviz-color">Viz</span> </h1>
-							<form class="form-signin">
-									<input class="form-control" type="email" required="" placeholder="Email address" autofocus="" id="inputEmail" name="loginEmail">
-									<input class="form-control" type="password" required="" placeholder="Password" id="inputPassword" name="loginPassword">
-									<button type="submit" value="Login" class="btn btn-primary btn-block btn-lg btn-signin" >Register</button>
-							</form>
+						<form class="form-signin">
+								<input class="form-control" type="text" required="" placeholder="First Name" autofocus="" id="inputFirst" name="firstName">
+								<input class="form-control" type="text" required="" placeholder="Last Name" autofocus="" id="inputLast" name="lastName">
+								<input class="form-control" type="email" required="" placeholder="Email address" autofocus="" id="inputEmail" name="loginEmail">
+								<input class="form-control" type="password" required="" placeholder="Password" id="inputPassword" name="loginPassword">
+								<button type="submit" value="Login" class="btn btn-primary btn-block btn-lg btn-signin" >Register</button>
+						</form>
+						<p id="privacy-statement"><i class="fa fa-lock"></i> We are committed to privacy, because we hate spam too.</p>
 					</div>
 			</div>
 			{{>footer}}
