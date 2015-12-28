@@ -94,7 +94,7 @@ if (Meteor.isClient) {
 			if (self.view.isRendered) {
 					var body = $('body');
 							body.removeClass();
-							body.addClass("skin-green sidebar-mini");
+							body.addClass("skin-green sidebar-mini fixed");
 
 					$(function () {
 							MeteorAdminLTE.run()

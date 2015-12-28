@@ -365,11 +365,6 @@ figure.effect-ruby:hover p {
 	font-size: 30px;
 }
 
-/* Report Crime */
-.rc {
-	min-height: calc(100% - 100px);
-}
-
 /* Registration */
 #privacy-statement {
 	font-size: 14px;
