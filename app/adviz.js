@@ -4,6 +4,7 @@ if (Meteor.isClient) {
       key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
       libraries: 'places,visualization'
     });
+		UI.registerHelper("Meteor", Meteor);
   });
 	
 	/* Dashboard Session Variable Initialization */
@@ -221,6 +222,14 @@ if (Meteor.isClient) {
         Router.go('login');
     }
 	});
+	
+	Template.dash_navbar.events({
+    'click #dash_logout': function(event){
+        event.preventDefault();
+        Meteor.logout();
+        Router.go('dashboard');
+    }
+	});
 		
 	Template.login.events({
     'submit form': function(event) {
@@ -246,8 +255,8 @@ if (Meteor.isClient) {
         var emailVar = event.target.loginEmail.value;
         var passwordVar = event.target.loginPassword.value;
 				Accounts.createUser({
-						first: firstVar,
-						last: lastVar,
+						firstName: firstVar,
+						lastName: lastVar,
 						email: emailVar,
 						password: passwordVar
 				}, function(error){
@@ -260,6 +269,27 @@ if (Meteor.isClient) {
 				});
 		}
 	});
+	
+//	Template.profile.events({
+//    'submit form': function(event) {
+//        event.preventDefault();
+//				var firstVar = event.target.profile.firstName.value;
+//				var lastVar = event.target.profile.lastName.value;
+//				var genderVar = event.target.profile.gender.value;
+//				Accounts.createUser({
+//						firstName: firstVar,
+//						lastName: lastVar,
+//						gender: genderVar
+//				}, function(error){
+//						if(error){
+//								alert(error.reason);
+//						} else {
+//								alert("Account updated!");
+//								Router.go("profile"); // Redirect user if registration succeeds
+//						}
+//				});
+//		}
+//	});
 
   Template.facebook_messaging.events({
     'submit .send-message': function(event) {
@@ -392,7 +422,13 @@ if (Meteor.isServer) {
     process.env.MAIL_URL="smtp://adviz.bot%40gmail.com:smartvizag@smtp.gmail.com:465/"; 
 
   });
-
+	
+	Accounts.onCreateUser(function(options, user) {
+		user.firstName = options.firstName;
+		user.lastName = options.lastName;
+		return user;
+	});
+	
   Meteor.methods({
     'sendMessage': function sendMessage(id,message) {
       var login = Meteor.npmRequire('facebook-chat-api');

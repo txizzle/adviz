@@ -23,14 +23,25 @@
 			<section class="content">
 
 				<!-- Your Page Content Here -->
-				<div class="row">
-            <div class="col-md-6">
+				{{#if currentUser}}
+					<div class="row">
+						{{#autoForm id="updateUserForm" collection=Meteor.users type="insert"}}
+						<div class="col-md-6">
+							{{> afQuickField name="firstName"}}
+							{{> afQuickField name="lastName"}}
 						</div>
-            <div class="col-md-6 text-center">
-              
-            </div>
-          </div>
+						<div class="col-md-6">
+							{{> afQuickField name="emails"}}
+							<div class="text-center">
+								<button type="submit" class="btn btn-primary">Update</button>
+							</div>
+						</div>
+						{{/autoForm}}
+					</div>
 					<!-- /.row -->
+				{{else}}
+					{{>notLoggedIn}}
+				{{/if}}
 				
 			</section>
 			<!-- /.content -->
