@@ -1,60 +1,9 @@
-Subscribers = new Mongo.Collection("subscribers");
-Queries = new Mongo.Collection("queries");
-Crimes = new Mongo.Collection("crimes");
-
 if (Meteor.isClient) {
   Meteor.startup(function() {
     GoogleMaps.load({
       key: 'AIzaSyAE55WmfZ5OYJQyV4WIXbHaFA6UsvY9zJ8',
       libraries: 'places,visualization'
     });
-			
-		/* IronRouter routes */
-		Router.configure({
-			loadingTemplate: 'loading'
-		});
-		
-		
-		Router.onBeforeAction(function() {
-			GoogleMaps.load({libraries: 'visualization' });
-			this.next();
-		}, { only: ['crime_map', 'crimeMap'] });
-			
-		Router.route('/', {
-			template: 'index'
-		});
-
-		Router.route('/home');
-		Router.route('/admin');
-		Router.route('/crimemap', function() {
-			Session.set('dashPage', 'map');
-			this.render('crime_map');
-		});
-		Router.route('/index');
-		Router.route('/olddashboard');
-		Router.route('/oldcrimemap');
-		Router.route('/reportcrime', function() {
-			Session.set('dashPage', 'report');
-			this.render('report_crime');
-		});
-		Router.route('/question', function() {
-			Session.set('dashPage', 'question');
-			this.render('question');
-		});
-		Router.route('/alert', function() {
-			Session.set('dashPage', 'alert');
-			this.render('past_alerts');
-		});
-		Router.route('/account', function() {
-			Session.set('dashPage', 'account');
-			this.render('profile');
-		})
-		Router.route('/login');
-		Router.route('/register');
-		Router.route('/dashboard', function() {
-			Session.set('dashPage', 'overview');
-			this.render('dashboard');
-		});
   });
 	
 	/* Dashboard Session Variable Initialization */
@@ -80,8 +29,8 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'question';
 	});
 	
-	Template.registerHelper('isAccount', function(input){
-		return Session.get("dashPage") === 'account';
+	Template.registerHelper('isProfile', function(input){
+		return Session.get("dashPage") === 'profile';
 	});
 	
 	Template.registerHelper('isAlert', function(input){
@@ -141,6 +90,19 @@ if (Meteor.isClient) {
 			}
 	});
 	
+	Template.profile.onRendered(function () {
+			var self = this;
+			if (self.view.isRendered) {
+					var body = $('body');
+							body.removeClass();
+							body.addClass("skin-green sidebar-mini fixed");
+
+					$(function () {
+							MeteorAdminLTE.run()
+					});
+			}
+	});
+	
 	Template.loading.rendered = function () {
 		if ( ! Session.get('loadingSplash') ) {
 			console.log("Loading!!!");
@@ -173,7 +135,9 @@ if (Meteor.isClient) {
       return Queries.find({});
     }
   });
-
+	
+	
+	
   Template.crime_map.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
@@ -197,7 +161,7 @@ if (Meteor.isClient) {
 			
 			data.forEach(function (row) {
 				var marker = new google.maps.Marker({
-        	position: {lat: row.lat*1, lng: row.lng*1},
+        	position: {lat: row.location.lat, lng: row.location.lng},
         	map: map.instance,
 					icon: {
 						path: google.maps.SymbolPath.CIRCLE,
@@ -338,14 +302,14 @@ if (Meteor.isClient) {
   Template.report_crime.events({
     'submit .report-crime': function(event) {
       event.preventDefault();
-      var type = event.target.type.value;
+      var category = event.target.type.value;
       var desc = event.target.desc.value;
       var lat = event.target.lat.value;
       var lng = event.target.lng.value;
       var time = event.target.time.value;
       
       Crimes.insert({
-              type: type,
+              category: category,
               desc: desc,
               time: time,
               lat: lat,

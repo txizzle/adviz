@@ -2,6 +2,10 @@ accounts-base@1.2.1
 accounts-password@1.1.3
 accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
+aldeed:autoform@5.8.1
+aldeed:autoform-bs-datetimepicker@1.0.6
+aldeed:collection2@2.3.2
+aldeed:simple-schema@1.3.0
 autopublish@1.0.4
 autoupdate@1.2.3
 babel-compiler@5.8.24_1
@@ -16,6 +20,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.0.6
+coffeescript@1.0.10
 dburles:google-maps@1.1.5
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
@@ -64,6 +69,7 @@ minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
+momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
 msavin:mongol@1.6.1
@@ -91,10 +97,12 @@ standard-minifiers@1.0.1
 templating@1.1.4
 templating-tools@1.0.0
 tracker@1.0.9
+tsega:bootstrap3-datetimepicker@3.1.3_3
 twbs:bootstrap@3.3.5
 ui@1.0.8
 underscore@1.0.4
 url@1.0.5
 webapp@1.2.2
 webapp-hashing@1.0.5
+yogiben:autoform-map@0.2.0
 yp2:admin-lte@2.3.1

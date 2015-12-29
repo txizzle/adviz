@@ -15,7 +15,7 @@ body {
 /* Table Styling */
 table,th, td {
     border: 1px solid white;
-    color: white;
+/*    color: white;*/
     margin: auto;
     padding: 5px;
 }

@@ -1,21 +1,21 @@
-<template name="report_crime">
+<template name="profile">
 	<div class="wrapper">
 
-		{{> dash_navbar}}
+		{{>dash_navbar}}
 		
-		{{> dash_sidebar}}
+		{{>dash_sidebar}}
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
 					<h1>
-						Report Crime
-						<small>Secure and Anonymous</small>
+						My Profile
+						<small>Account Settings</small>
 					</h1>
 					<ol class="breadcrumb">
 						<li><a href=dashboard><i class="fa fa-dashboard"></i> Dashboard</a></li>
-						<li class="active"><i class="fa fa-flag"></i> Report Crime</li>
+						<li class="active"><i class="fa fa-user"></i> Account Setings</li>
 					</ol>
 			</section>
 
@@ -24,21 +24,15 @@
 
 				<!-- Your Page Content Here -->
 				<div class="row">
-						{{#autoForm id="crimeForm" collection="Crimes" type="insert"}}
-							<div class="col-md-6">
-								{{> afQuickField name="location"}}
-							</div>
-							<div class="col-md-6">
-								{{> afQuickField name="category"}}
-								{{> afQuickField name="desc" rows=4}}
-								{{> afQuickField name="time"}}
-								<div class="text-center">
-									<button type="submit" class="btn btn-primary">Report Crime</button>
-								</div>
-							</div>
-						{{/autoForm}}
-				</div>
-				<!-- /.row -->
+            <div class="col-md-6">
+							{{>updateCrimeForm}}
+						</div>
+            <div class="col-md-6 text-center">
+              
+            </div>
+          </div>
+					<!-- /.row -->
+				
 			</section>
 			<!-- /.content -->
 		</div>
@@ -54,7 +48,8 @@
 			<strong>Copyright &copy; 2015 <a href="#">ad<b>Viz</b></a>.</strong> All rights reserved.
 		</footer>
 
-		{{> dash_control_sidebar}}
+		{{>dash_control_sidebar}}
 	</div>
 	<!-- ./wrapper -->
 </template>
+
