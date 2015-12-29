@@ -364,6 +364,14 @@ if (Meteor.isClient) {
       }
     }
   });
+	
+		
+	AutoForm.addHooks(['crimeForm'], {
+		onSuccess: function (operation, result, template) {
+						alert('Crime successfully reported!');
+						Router.go("crimemap");
+		}
+	});
 }
 
 if (Meteor.isServer) {
