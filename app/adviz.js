@@ -240,12 +240,20 @@ if (Meteor.isClient) {
 								alert(error.reason);
 						} else {
 								console.log("Sending to dashboard");
-								Router.go("/dashboard"); // Redirect user if registration succeeds
+								Router.go("dashboard"); // Redirect user if registration succeeds
 								Modal.show('welcome');
 						}
 				});
 		}
 	});
+	
+	Template.welcome.events({
+		'click #profileRedirect': function(event) {
+			Modal.hide('welcome');
+			Router.go("profile");
+		}
+		
+	})
 	
 	Template.profile.events({
     'submit form': function(event) {
