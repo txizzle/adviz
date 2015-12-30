@@ -1,0 +1,61 @@
+<template name="trends">
+	<div class="wrapper">
+
+		{{> dash_navbar}}
+		
+		{{> dash_sidebar}}
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+					<h1>
+						Crime Trends
+						<small>Your World, Visualized</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li><a href=dashboard><i class="fa fa-dashboard"></i> Dashboard</a></li>
+						<li class="active"><i class="fa fa-history"></i> Past Alerts</li>
+					</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Your Page Content Here -->
+				<div class="row">
+    			<div id="container-column" style="min-width: 310px; height: 400px;"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="box box-primary box-solid">
+								<div class="box-header with-border">
+									<h3 class="box-title">Alert List</h3>
+								</div>
+								<div class="box-body">
+									<p>You have no past alerts yet!</p>
+									<a href="profile" class="btn btn-warning">Configure Alerts</a>
+									<a href="dashboard" class="btn btn-primary">Back</a>
+								</div>
+							</div>
+					</div>
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer">
+			<!-- To the right -->
+			<div class="pull-right hidden-xs">
+				Made by UC Berkeley students for the citizens of Visakhapatnam.
+			</div>
+			<!-- Default to the left -->
+			<strong>Copyright &copy; 2015 <a href="#">ad<b>Viz</b></a>.</strong> All rights reserved.
+		</footer>
+
+		{{> dash_control_sidebar}}
+	</div>
+	<!-- ./wrapper -->
+</template>

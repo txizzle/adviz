@@ -22,6 +22,10 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'map';
 	});
 	
+	Template.registerHelper('isTrends', function(input){
+		return Session.get("dashPage") === 'trends';
+	});
+	
 	Template.registerHelper('isReport', function(input){
 		return Session.get("dashPage") === 'report';
 	});
@@ -64,6 +68,10 @@ if (Meteor.isClient) {
 	});
 	
 	Template.crime_map.onRendered(function () {
+			renderAdminLTE(this);
+	});
+	
+	Template.trends.onRendered(function () {
 			renderAdminLTE(this);
 	});
 	
@@ -256,7 +264,7 @@ if (Meteor.isClient) {
 	})
 	
 	Template.profile.events({
-    'submit form': function(event) {
+    'submit #updateUserForm': function(event) {
         event.preventDefault();
 				console.log(event.target);
 				var firstVar = event.target.firstName.value;

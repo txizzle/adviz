@@ -43,7 +43,11 @@
 					{{else}}
 						<li><a href="crimemap"><i class="fa fa-map-marker"></i> <span>Crime Map</span></a></li>
 					{{/if}}
-					<li><a href="#"><i class="fa fa-line-chart"></i> <span>Crime Trends</span></a></li>
+					{{#if isTrends}}
+						<li class="active"><a href="trends"><i class="fa fa-line-chart"></i> <span>Crime Trends</span></a></li>
+					{{else}}
+						<li><a href="trends"><i class="fa fa-line-chart"></i> <span>Crime Trends</span></a></li>
+					{{/if}}
 					{{#if isReport}}
 						<li class="active"><a href="reportcrime"><i class="fa fa-flag-o"></i> <span>Report Crime</span></a></li>
 					{{else}}
