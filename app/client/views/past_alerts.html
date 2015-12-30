@@ -23,20 +23,24 @@
 			<section class="content">
 
 				<!-- Your Page Content Here -->
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<div class="box box-primary box-solid">
-								<div class="box-header with-border">
-									<h3 class="box-title">Alert List</h3>
+				{{#if currentUser}}
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div class="box box-primary box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">Alert List</h3>
+									</div>
+									<div class="box-body">
+										<p>You have no past alerts yet!</p>
+										<a href="profile" class="btn btn-warning">Configure Alerts</a>
+										<a href="dashboard" class="btn btn-primary">Back</a>
+									</div>
 								</div>
-								<div class="box-body">
-									<p>You have no past alerts yet!</p>
-									<a href="profile" class="btn btn-warning">Configure Alerts</a>
-									<a href="dashboard" class="btn btn-primary">Back</a>
-								</div>
-							</div>
+						</div>
 					</div>
-				</div>
+				{{else}}
+					{{>notLoggedIn}}
+				{{/if}}
 			</section>
 			<!-- /.content -->
 		</div>

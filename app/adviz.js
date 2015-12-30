@@ -107,9 +107,7 @@ if (Meteor.isClient) {
       return Queries.find({});
     }
   });
-	
-	
-	
+
   Template.crime_map.helpers({
     crimeMapOptions: function() {
       // Make sure the maps API has loaded
@@ -120,17 +118,17 @@ if (Meteor.isClient) {
           zoom: 16
         };
       }
-    }
+    },
+		totalCrimes: function() {
+			return Crimes.find({}).count() + 15;
+		},
+		percentUserSubmitted: function() {
+			return Math.round(Crimes.find({}).count()/(Crimes.find({}).count() + 15)*100);
+		}
   });
   
   Template.crime_map.onCreated(function() {
-    // We can use the `ready` callback to interact with the map API once the map is ready.
-		GoogleMaps.load({libraries: 'visualization' });
-//		https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization&sensor=true_or_false"
     GoogleMaps.ready('crimeMap', function(map) {
-      // Add a marker to the map once it's ready
-			
-			
 			var sampleCrimes = [
 				new google.maps.LatLng(17.6886, 83.2189),
 				new google.maps.LatLng(17.6886, 83.2193),
@@ -243,6 +241,7 @@ if (Meteor.isClient) {
 						} else {
 								console.log("Sending to dashboard");
 								Router.go("/dashboard"); // Redirect user if registration succeeds
+								Modal.show('welcome');
 						}
 				});
 		}
@@ -491,7 +490,7 @@ if (Meteor.isServer) {
 
 
   Accounts.config({
-    sendVerificationEmail: true,
+    sendVerificationEmail: false,
     forbidClientAccountCreation: false
   });
 }
