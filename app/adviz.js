@@ -34,13 +34,12 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'profile';
 	});
 	
-	Template.registerHelper('isAlert', function(input){
-		return Session.get("dashPage") === 'alert';
+	Template.registerHelper('isAlerts', function(input){
+		return Session.get("dashPage") === 'alerts';
 	});
 	
-	
-	Template.dashboard.onRendered(function () {
-			var self = this;
+	function renderAdminLTE(context) {
+		var self = context;
 			if (self.view.isRendered) {
 					var body = $('body');
 							body.removeClass();
@@ -50,58 +49,30 @@ if (Meteor.isClient) {
 							MeteorAdminLTE.run()
 					});
 			}
+	}
+	
+	Template.dashboard.onRendered(function () {
+			renderAdminLTE(this);
 	});
 	
 	Template.question.onRendered(function () {
-			var self = this;
-			if (self.view.isRendered) {
-					var body = $('body');
-							body.removeClass();
-							body.addClass("skin-green sidebar-mini fixed");
-
-					$(function () {
-							MeteorAdminLTE.run()
-					});
-			}
+			renderAdminLTE(this);
 	});
 	
 	Template.report_crime.onRendered(function () {
-			var self = this;
-			if (self.view.isRendered) {
-					var body = $('body');
-							body.removeClass();
-							body.addClass("skin-green sidebar-mini fixed");
-
-					$(function () {
-							MeteorAdminLTE.run()
-					});
-			}
+			renderAdminLTE(this);
 	});
 	
 	Template.crime_map.onRendered(function () {
-			var self = this;
-			if (self.view.isRendered) {
-					var body = $('body');
-							body.removeClass();
-							body.addClass("skin-green sidebar-mini fixed");
-
-					$(function () {
-							MeteorAdminLTE.run()
-					});
-			}
+			renderAdminLTE(this);
+	});
+	
+	Template.past_alerts.onRendered(function () {
+			renderAdminLTE(this);
 	});
 	
 	Template.profile.onRendered(function () {
-			var self = this;
-			if (self.view.isRendered) {
-					var body = $('body');
-							body.removeClass();
-							body.addClass("skin-green sidebar-mini fixed");
-
-					$(function () {
-							MeteorAdminLTE.run()
-					});
-			}
+			renderAdminLTE(this);
 	});
 	
 	Template.loading.rendered = function () {
@@ -158,20 +129,7 @@ if (Meteor.isClient) {
 //		https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization&sensor=true_or_false"
     GoogleMaps.ready('crimeMap', function(map) {
       // Add a marker to the map once it's ready
-			data = Crimes.find({});
 			
-			data.forEach(function (row) {
-				var marker = new google.maps.Marker({
-        	position: {lat: row.location.lat, lng: row.location.lng},
-        	map: map.instance,
-					icon: {
-						path: google.maps.SymbolPath.CIRCLE,
-						scale: 4,
-						fillColor: 'black',
-						strokeColor: 'black'
-					}
-      	});
-			});
 			
 			var sampleCrimes = [
 				new google.maps.LatLng(17.6886, 83.2189),
@@ -190,7 +148,21 @@ if (Meteor.isClient) {
 				new google.maps.LatLng(17.6912, 83.1402),
 				new google.maps.LatLng(17.6920, 83.1920)
 			]
+			data = Crimes.find({});
 			
+			data.forEach(function (row) {
+				sampleCrimes.push(new google.maps.LatLng(row.location.lat, row.location.lng));
+//				var marker = new google.maps.Marker({
+//        	position: {lat: row.location.lat, lng: row.location.lng},
+//        	map: map.instance,
+//					icon: {
+//						path: google.maps.SymbolPath.CIRCLE,
+//						scale: 4,
+//						fillColor: 'black',
+//						strokeColor: 'black'
+//					}
+//      	});
+			});
 			var crimeArray = new google.maps.MVCArray(sampleCrimes);
 			
 			for (var i = 0; i < sampleCrimes.length; i++) {
@@ -231,13 +203,11 @@ if (Meteor.isClient) {
     }
 	});
 	
-	Template.dash_navbar.helpers({
-		firstName: function() {
-			return Meteor.user().profile.firstName;
-		},
-		lastName: function() {
-			return Meteor.user().profile.lastName;
-		}
+	Template.registerHelper('firstName', function() {
+		return Meteor.user().profile.firstName;
+	});
+	Template.registerHelper('lastName', function(){
+		return Meteor.user().profile.lastName;
 	});
 		
 	Template.login.events({
@@ -295,15 +265,6 @@ if (Meteor.isClient) {
 								Router.go("dashboard"); // Redirect user if registration succeeds
 						}
 				});
-		}
-	});
-	
-	Template.profile.helpers({
-		currFirst: function() {
-			return Meteor.user().profile.firstName;
-		},
-		currLast: function() {
-			return Meteor.user().profile.lastName;
 		}
 	});
 
