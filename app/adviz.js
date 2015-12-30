@@ -230,6 +230,15 @@ if (Meteor.isClient) {
         Router.go('dashboard');
     }
 	});
+	
+	Template.dash_navbar.helpers({
+		firstName: function() {
+			return Meteor.user().profile.firstName;
+		},
+		lastName: function() {
+			return Meteor.user().profile.lastName;
+		}
+	});
 		
 	Template.login.events({
     'submit form': function(event) {
@@ -255,8 +264,7 @@ if (Meteor.isClient) {
         var emailVar = event.target.loginEmail.value;
         var passwordVar = event.target.loginPassword.value;
 				Accounts.createUser({
-						firstName: firstVar,
-						lastName: lastVar,
+						profile: {firstName: firstVar, lastName: lastVar},
 						email: emailVar,
 						password: passwordVar
 				}, function(error){
@@ -270,26 +278,34 @@ if (Meteor.isClient) {
 		}
 	});
 	
-//	Template.profile.events({
-//    'submit form': function(event) {
-//        event.preventDefault();
-//				var firstVar = event.target.profile.firstName.value;
-//				var lastVar = event.target.profile.lastName.value;
-//				var genderVar = event.target.profile.gender.value;
-//				Accounts.createUser({
-//						firstName: firstVar,
-//						lastName: lastVar,
-//						gender: genderVar
-//				}, function(error){
-//						if(error){
-//								alert(error.reason);
-//						} else {
-//								alert("Account updated!");
-//								Router.go("profile"); // Redirect user if registration succeeds
-//						}
-//				});
-//		}
-//	});
+	Template.profile.events({
+    'submit form': function(event) {
+        event.preventDefault();
+				console.log(event.target);
+				var firstVar = event.target.firstName.value;
+				var lastVar = event.target.lastName.value;
+				Meteor.users.update({_id: Meteor.user()._id}, {$set: {
+							profile: {firstName: firstVar, lastName: lastVar}
+						}
+			 		}, function(error){
+						if(error){
+								alert(error.reason);
+						} else {
+								alert("Account updated!");
+								Router.go("dashboard"); // Redirect user if registration succeeds
+						}
+				});
+		}
+	});
+	
+	Template.profile.helpers({
+		currFirst: function() {
+			return Meteor.user().profile.firstName;
+		},
+		currLast: function() {
+			return Meteor.user().profile.lastName;
+		}
+	});
 
   Template.facebook_messaging.events({
     'submit .send-message': function(event) {
@@ -426,6 +442,9 @@ if (Meteor.isServer) {
 	Accounts.onCreateUser(function(options, user) {
 		user.firstName = options.firstName;
 		user.lastName = options.lastName;
+		if (options.profile) {
+			user.profile = options.profile;
+		}
 		return user;
 	});
 	
