@@ -17,3 +17,23 @@
 	
 	</div>
 </template>
+
+<template name="notAdmin">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<div class="box box-primary box-solid">
+				<div class="box-header with-border">
+					<h3 class="box-title text-center">Not an Admin!</h3>
+				</div>
+				<div class="box-body">
+					<p>You're trying to access a page reserved for admins.</p>
+					<div class="text-center">
+						<a href="login" class="btn btn-success btn-flat">Log in as Admin</a>
+						<a href="dashboard" class="btn btn-primary btn-flat">Dashboard</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+</template>

@@ -42,6 +42,14 @@ if (Meteor.isClient) {
 		return Session.get("dashPage") === 'alerts';
 	});
 	
+	Template.registerHelper('isAdmin', function(input) {
+		return Session.get("dashPage") === 'admin';
+	});
+		
+	Template.registerHelper('isUserAdmin', function(input) {
+		return Meteor.user().isAdmin;
+	});
+	
 	function renderAdminLTE(context) {
 		var self = context;
 			if (self.view.isRendered) {
@@ -82,6 +90,11 @@ if (Meteor.isClient) {
 	Template.profile.onRendered(function () {
 			renderAdminLTE(this);
 	});
+	
+	Template.admin.onRendered(function () {
+			renderAdminLTE(this);
+	});
+	
 	
 	Template.loading.rendered = function () {
 		if ( ! Session.get('loadingSplash') ) {
@@ -242,7 +255,8 @@ if (Meteor.isClient) {
 				Accounts.createUser({
 						profile: {firstName: firstVar, lastName: lastVar},
 						email: emailVar,
-						password: passwordVar
+						password: passwordVar,
+						isAdmin: false
 				}, function(error){
 						if(error){
 								alert(error.reason);
@@ -424,6 +438,7 @@ if (Meteor.isServer) {
 	Accounts.onCreateUser(function(options, user) {
 		user.firstName = options.firstName;
 		user.lastName = options.lastName;
+		user.isAdmin = options.isAdmin;
 		if (options.profile) {
 			user.profile = options.profile;
 		}
