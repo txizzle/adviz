@@ -249,13 +249,13 @@ if (Meteor.isClient) {
 						} else {
 								console.log("Sending to dashboard");
 								Router.go("dashboard"); // Redirect user if registration succeeds
-								Modal.show('welcome');
+								Modal.show('modal_welcome');
 						}
 				});
 		}
 	});
 	
-	Template.welcome.events({
+	Template.modal_welcome.events({
 		'click #profileRedirect': function(event) {
 			Modal.hide('welcome');
 			Router.go("profile");
@@ -276,7 +276,7 @@ if (Meteor.isClient) {
 						if(error){
 								alert(error.reason);
 						} else {
-								alert("Account updated!");
+								Modal.show('modal_account_updated');
 								Router.go("dashboard"); // Redirect user if registration succeeds
 						}
 				});
@@ -390,8 +390,14 @@ if (Meteor.isClient) {
 		
 	AutoForm.addHooks(['crimeForm'], {
 		onSuccess: function (operation, result, template) {
-						alert('Crime successfully reported!');
+						Modal.show('modal_crime_reported');
 						Router.go("crimemap");
+		}
+	});
+	
+	AutoForm.addHooks(['alertForm'], {
+		onSuccess: function (operation, result, template) {
+						Modal.show('modal_alert_added');
 		}
 	});
 }
