@@ -47,7 +47,8 @@ if (Meteor.isClient) {
 	});
 		
 	Template.registerHelper('isUserAdmin', function(input) {
-		return Meteor.user().isAdmin;
+		console.log(Meteor.user().profile.isAdmin);
+		return Meteor.user().profile.isAdmin;
 	});
 	
 	function renderAdminLTE(context) {
@@ -222,11 +223,36 @@ if (Meteor.isClient) {
     }
 	});
 	
+	Template.dash_control_sidebar.events({
+		'click #promoteAdmin': function(event) {
+        event.preventDefault();
+				var currFirst = Meteor.user().profile.firstName;
+				var currLast = Meteor.user().profile.lastName;
+				var currPhone = Meteor.user().profile.phone;
+				Meteor.users.update({_id: Meteor.user()._id}, {$set: {
+							profile: {isAdmin: true, firstName: currFirst, lastName: currLast, phone: currPhone}
+						}
+			 		}, function(error){
+						if(error){
+								alert(error.reason);
+						} else {
+								alert('You\'re an admin now!');
+								Router.go("admin"); // Redirect user if registration succeeds
+						}
+				});
+		}
+	});
+	
 	Template.registerHelper('firstName', function() {
 		return Meteor.user().profile.firstName;
 	});
+	
 	Template.registerHelper('lastName', function(){
 		return Meteor.user().profile.lastName;
+	});
+	
+	Template.registerHelper('currPhone', function(){
+		return Meteor.user().profile.phone;
 	});
 		
 	Template.login.events({
@@ -253,10 +279,9 @@ if (Meteor.isClient) {
         var emailVar = event.target.loginEmail.value;
         var passwordVar = event.target.loginPassword.value;
 				Accounts.createUser({
-						profile: {firstName: firstVar, lastName: lastVar},
+						profile: {firstName: firstVar, lastName: lastVar, phone: '', fb: ''},
 						email: emailVar,
-						password: passwordVar,
-						isAdmin: false
+						password: passwordVar
 				}, function(error){
 						if(error){
 								alert(error.reason);
@@ -283,15 +308,17 @@ if (Meteor.isClient) {
 				console.log(event.target);
 				var firstVar = event.target.firstName.value;
 				var lastVar = event.target.lastName.value;
+				var phone = event.target.phone.value;
+				var currAdmin = Meteor.user().profile.isAdmin;
 				Meteor.users.update({_id: Meteor.user()._id}, {$set: {
-							profile: {firstName: firstVar, lastName: lastVar}
+							profile: {firstName: firstVar, lastName: lastVar, phone: phone, isAdmin: currAdmin}
 						}
 			 		}, function(error){
 						if(error){
 								alert(error.reason);
 						} else {
 								Modal.show('modal_account_updated');
-								Router.go("dashboard"); // Redirect user if registration succeeds
+//								Router.go("dashboard"); // Redirect user if registration succeeds
 						}
 				});
 		}
@@ -442,6 +469,7 @@ if (Meteor.isServer) {
 		if (options.profile) {
 			user.profile = options.profile;
 		}
+		user.profile['isAdmin'] = false;
 		return user;
 	});
 	
