@@ -118,9 +118,9 @@ if (Meteor.isClient) {
 	var message = '<p class="loading-message">adViz is loading!</p>';
 	var spinner = '<div class="sk-spinner sk-spinner-rotating-plane"></div>';	
 	
-  Template.subscribers_overview.helpers({
-    subscribers: function() {
-      return Subscribers.find({});
+  Template.users_overview.helpers({
+    users: function() {
+      return Meteor.users.find({});
     }
   });
 
@@ -253,6 +253,10 @@ if (Meteor.isClient) {
 	
 	Template.registerHelper('currPhone', function(){
 		return Meteor.user().profile.phone;
+	});
+	
+	Template.registerHelper('currFb', function(){
+		return Meteor.user().profile.fb;
 	});
 		
 	Template.login.events({
@@ -485,7 +489,7 @@ if (Meteor.isServer) {
         if (err) return console.error(err);
         console.log("logged in!");
         //need to implement threadID for group chats
-        var fb_id = Subscribers.findOne({id: id}).fb_id;
+        var fb_id = Meteor.users.findOne({id: id}).profile.fb;
         console.log("fb id: " + fb_id);
         api.sendMessage(message, fb_id);
       }));
@@ -496,7 +500,7 @@ if (Meteor.isServer) {
       var client = Meteor.npmRequire('twilio')(accountSid, authToken);
 
       //TODO: parse phone number to make sure it is ########## without () or -
-      var phone = "+1" + Subscribers.findOne({id: id}).phone
+      var phone = "+1" + Meteor.users.findOne({id: id}).profile.phone
       client.messages.create({
         from: "+13236723849",
         to: phone,

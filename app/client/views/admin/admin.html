@@ -24,9 +24,10 @@
 
 				<!-- Your Page Content Here -->
 				{{#if isUserAdmin}}
-					hello
+					{{> users_overview}}
+					{{> facebook_messaging}}
 				{{else}}
-					{{>notAdmin}}
+					{{> notAdmin}}
 				{{/if}}
 			</section>
 			<!-- /.content -->

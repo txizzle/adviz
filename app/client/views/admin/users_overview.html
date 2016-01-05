@@ -1,0 +1,27 @@
+<template name="users_overview">
+    <div class="row text-center">
+      <h2>Users</h2>
+    </div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+				<th>Last Name</th>
+        <th>Facebook ID</th>
+        <th>Phone Number</th>
+      </tr>
+      {{#each users}}
+        {{> user}}
+      {{/each}}
+    </table>
+</template>
+
+<template name="user">
+  <tr>
+    <td>{{_id}}</td>
+    <td>{{firstName}}</td>
+		<td>{{lastName}}</td>
+    <td>{{currFb}}</td>
+    <td>{{currPhone}}</td>
+  </tr>
+</template>
