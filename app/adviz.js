@@ -563,11 +563,8 @@ if (Meteor.isServer) {
     }
   });
 
-
   Accounts.config({
     sendVerificationEmail: false,
     forbidClientAccountCreation: false
   });
 }
-
-

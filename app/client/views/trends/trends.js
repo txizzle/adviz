@@ -1,88 +1,88 @@
 /* Trends */
-	/*
-	 * Function to draw the column chart
-	 */
-	function buildColumn() {
+/*
+ * Function to draw the column chart
+ */
+function buildColumn() {
 
-			$('#container-column').highcharts({
+		$('#container-column').highcharts({
 
-					chart: {
-							type: 'column'
-					},
+				chart: {
+						type: 'column'
+				},
 
-					title: {
-							text: 'Monthly Crime Incidents'
-					},
+				title: {
+						text: 'Monthly Crime Incidents'
+				},
 
-					subtitle: {
-							text: '2015'
-					},
+				subtitle: {
+						text: '2015'
+				},
 
-					credits: {
-							enabled: false
-					},
+				credits: {
+						enabled: false
+				},
 
-					xAxis: {
-							categories: [
-									'Jan',
-									'Feb',
-									'Mar',
-									'Apr',
-									'May',
-									'Jun',
-									'Jul',
-									'Aug',
-									'Sep',
-									'Oct',
-									'Nov',
-									'Dec'
-							]
-					},
+				xAxis: {
+						categories: [
+								'Jan',
+								'Feb',
+								'Mar',
+								'Apr',
+								'May',
+								'Jun',
+								'Jul',
+								'Aug',
+								'Sep',
+								'Oct',
+								'Nov',
+								'Dec'
+						]
+				},
 
-					yAxis: {
-							min: 0,
-							title: {
-									text: 'Incidents'
-							}
-					},
+				yAxis: {
+						min: 0,
+						title: {
+								text: 'Incidents'
+						}
+				},
 
-					tooltip: {
-							headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-							pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-									'<td style="padding:0"><b>{point.y:.1f} incidents</b></td></tr>',
-							footerFormat: '</table>',
-							shared: true,
-							useHTML: true
-					},
+				tooltip: {
+						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+								'<td style="padding:0"><b>{point.y:.1f} incidents</b></td></tr>',
+						footerFormat: '</table>',
+						shared: true,
+						useHTML: true
+				},
 
-					plotOptions: {
-							column: {
-									pointPadding: 0.2,
-									borderWidth: 0
-							}
-					},
+				plotOptions: {
+						column: {
+								pointPadding: 0.2,
+								borderWidth: 0
+						}
+				},
 
-					series: [{
-							name: 'Domestic Abuse',
-							data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
+				series: [{
+						name: 'Domestic Abuse',
+						data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
 
-					}, {
-							name: 'Simple Hurt',
-							data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92]
+				}, {
+						name: 'Simple Hurt',
+						data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92]
 
-					}, {
-							name: 'Burglary',
-							data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51],
-							color: '#843026'
+				}, {
+						name: 'Burglary',
+						data: [48, 38, 39, 41, 47, 48, 59, 59, 52, 65, 59, 51],
+						color: '#843026'
 
-					}, {
-							name: 'Abduction',
-							data: [22, 33, 14, 29, 22, 25, 17, 30, 17, 19, 26, 21],
-							color: '#dd4b39'
+				}, {
+						name: 'Abduction',
+						data: [22, 33, 14, 29, 22, 25, 17, 30, 17, 19, 26, 21],
+						color: '#dd4b39'
 
-					}]
-			});
-	}
+				}]
+		});
+}
 
 /*
  * Function to draw the pie chart
@@ -319,24 +319,21 @@ function buildArea() {
     });
 }
 
-	/*
-	 * Call the function to build the chart when the template is rendered
-	 */
-	Template.trends.rendered = function() {    
-			buildColumn();
-			build2015Pie();
-			buildArea();
-			build2015VCPie();
+Template.trends.rendered = function() {    
+		buildColumn();
+		build2015Pie();
+		buildArea();
+		build2015VCPie();
+}
+
+Template.trends.helpers({
+	totalCrimes: function() {
+		return Crimes.find({}).count() + 15;
+	},
+	percentUserSubmitted: function() {
+		return Math.round(Crimes.find({}).count()/(Crimes.find({}).count() + 15)*100);
+	},
+	totalUsers: function() {
+		return Meteor.users.find({}).count();
 	}
-	
-	Template.trends.helpers({
-		totalCrimes: function() {
-			return Crimes.find({}).count() + 15;
-		},
-		percentUserSubmitted: function() {
-			return Math.round(Crimes.find({}).count()/(Crimes.find({}).count() + 15)*100);
-		},
-		totalUsers: function() {
-			return Meteor.users.find({}).count();
-		}
-  });
+});
