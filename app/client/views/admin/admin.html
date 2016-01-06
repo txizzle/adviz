@@ -24,8 +24,39 @@
 
 				<!-- Your Page Content Here -->
 				{{#if isUserAdmin}}
-					{{> users_overview}}
-					{{> facebook_messaging}}
+<!--					{{> facebook_messaging}}-->
+				
+					<div class="row">
+						<div class="col-md-6">
+							<div class="box box-info box-solid">
+								<div class="box-header with-border">
+									Users
+								</div>
+								<div class="box-body">
+									{{> users_overview}}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="box box-primary box-solid">
+								<div class="box-header with-border">
+									<h3 class="box-title">Send Mass Alert</h3>
+								</div>
+								<div class="box-body">
+									{{#autoForm id="messageForm" collection="Messages" type="insert"}}
+										{{> afQuickField name="recipientsGeo"}}
+										{{> afQuickField name="recipientsGender"}}
+										{{> afQuickField name="recipientsAge"}}
+										{{> afQuickField name="channels"}}
+										{{> afQuickField name="message" rows=4}}
+										<div class="text-center">
+											<button type="submit" class="btn btn-primary">Send Alert</button>
+										</div>
+									{{/autoForm}}
+								</div>
+							</div>		
+						</div>			
+					</div>
 				{{else}}
 					{{> notAdmin}}
 				{{/if}}

@@ -1,10 +1,7 @@
 <template name="users_overview">
-    <div class="row text-center">
-      <h2>Users</h2>
-    </div>
     <table>
       <tr>
-        <th>ID</th>
+<!--        <th>ID</th>-->
         <th>First Name</th>
 				<th>Last Name</th>
         <th>Facebook ID</th>
@@ -18,10 +15,10 @@
 
 <template name="user">
   <tr>
-    <td>{{_id}}</td>
-    <td>{{firstName}}</td>
-		<td>{{lastName}}</td>
-    <td>{{currFb}}</td>
-    <td>{{currPhone}}</td>
+<!--    <td>{{_id}}</td>-->
+    <td>{{profile.firstName}}</td>
+		<td>{{profile.lastName}}</td>
+    <td>{{profile.fb}}</td>
+    <td>{{profile.phone}}</td>
   </tr>
 </template>

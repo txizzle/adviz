@@ -243,11 +243,11 @@ if (Meteor.isClient) {
 		}
 	});
 	
-	Template.registerHelper('firstName', function() {
+	Template.registerHelper('currFirstName', function() {
 		return Meteor.user().profile.firstName;
 	});
 	
-	Template.registerHelper('lastName', function(){
+	Template.registerHelper('currLastName', function(){
 		return Meteor.user().profile.lastName;
 	});
 	
@@ -443,6 +443,12 @@ if (Meteor.isClient) {
 	AutoForm.addHooks(['alertForm'], {
 		onSuccess: function (operation, result, template) {
 						Modal.show('modal_alert_added');
+		}
+	});
+	
+	AutoForm.addHooks(['messageForm'], {
+		onSuccess: function (operation, result, template) {
+						Modal.show('modal_message_sent');
 		}
 	});
 }
