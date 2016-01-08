@@ -369,3 +369,9 @@ figure.effect-ruby:hover p {
 #privacy-statement {
 	font-size: 14px;
 }
+
+/* Profile */
+.btn-facebook {
+	background-color: #425f9c;
+	border-color: #425f9c;
+}
