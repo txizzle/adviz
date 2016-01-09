@@ -14,6 +14,12 @@ if (Meteor.isClient) {
 //		return Session.get('loadingSplash') ? currPage : 'loading';
 //	});
 	
+	UI.registerHelper("getImageUser", function (userId) {
+    var user= Meteor.user();
+		var url = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=normal";
+		return url;
+	});
+	
 	Template.registerHelper('isOverview', function(input){
 		return Session.get("dashPage") === 'overview';
 	});
@@ -54,6 +60,10 @@ if (Meteor.isClient) {
 	Template.registerHelper('noFB', function(input) {
 		console.log(!Meteor.user().services.facebook);
 		return !Meteor.user().services.facebook;
+	});
+	
+	Template.registerHelper('noTwitter', function(input) {
+		return !Meteor.user().services.twitter;
 	});
 	
 	Template.registerHelper('noPhone', function(input) {
@@ -517,6 +527,13 @@ if (Meteor.isClient) {
                 throw new Meteor.Error("Facebook login failed");
             }
         });
+    },
+		'click #connectWithTwitter': function(event) {
+        Meteor.linkWithTwitter({}, function(err){
+            if (err) {
+                throw new Meteor.Error("Twitter login failed");
+            }
+        });
     }
 	});
 
@@ -675,6 +692,15 @@ if (Meteor.isServer) {
     secret: '55829ed26d05838360d7be86b3b19a88'
 	});
 	
+	ServiceConfiguration.configurations.remove({
+		service: "twitter"
+	});
+	ServiceConfiguration.configurations.insert({
+		service: "twitter",
+		consumerKey: "1LokFin3s2GqYyWFpyvONfkml",
+		secret: "zKaeNP6PBIRYsa15zzyAxGCYSG0sOOKDs4WlmzhUQnpwpRjNBA"
+	});
+
 	Accounts.onCreateUser(function(options, user) {
 		user.firstName = options.firstName;
 		user.lastName = options.lastName;

@@ -68,6 +68,30 @@
 									</div>
 								</div>
 								<!-- box -->
+							{{else}}
+								<div class="box box-primary box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">Connected with Facebook</h3>
+									</div>
+									<div class="box-body">
+										<div class="row">
+											<div class="col-md-6 text-center">
+												<img src="{{getImageUser this._id}}" alt="...">
+											</div>
+											<div class="col-md-6">
+												First: {{currentUser.services.facebook.first_name}}
+												<br>
+												Last: {{currentUser.services.facebook.last_name}}
+												<br>
+												Gender:	{{currentUser.services.facebook.gender}}
+											</div>
+										</div>
+										
+										
+										<br>
+									</div>
+								</div>
+								<!-- box -->
 							{{/if}}
 							
 							
@@ -104,6 +128,40 @@
 								</div>
 							</div>	
 							<!-- box -->
+							
+							{{#if noTwitter}}
+								<div class="box box-info box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">Connect with Twitter</h3>
+									</div>
+									<div class="box-body">
+										Connecting with Twitter allows us to send alerts directly to your Twitter account.
+										<br>
+										<div class="text-center">
+											<button id="connectWithTwitter" class="btn btn-info">Connect with Twitter</button>
+										</div>
+									</div>
+								</div>
+								<!-- box -->
+							{{else}}
+								<div class="box box-info box-solid">
+									<div class="box-header with-border">
+										<h3 class="box-title">Connected with Twitter</h3>
+									</div>
+									<div class="box-body">
+										<div class="row">
+											<div class="col-md-6">
+												<img src="{{currentUser.services.twitter.profile_image_url}}" alt="...">
+											</div>
+											<div class="col-md-6">
+												Screen Name: {{currentUser.services.twitter.screenName}}
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- box -->
+							{{/if}}
+							
 						</div>
 					</div>
 					<!-- /.row -->
