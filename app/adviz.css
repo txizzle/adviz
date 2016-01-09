@@ -13,7 +13,7 @@ body {
 
 
 /* Table Styling */
-table,th, td {
+.users_table {
     border: 1px solid black;
 /*    color: white;*/
     margin: auto;

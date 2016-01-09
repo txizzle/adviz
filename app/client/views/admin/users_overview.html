@@ -1,11 +1,11 @@
 <template name="users_overview">
-    <table>
-      <tr>
+    <table class="users_table">
+      <tr class="users_table">
 <!--        <th>ID</th>-->
-        <th>First Name</th>
-				<th>Last Name</th>
-        <th>Facebook ID</th>
-        <th>Phone Number</th>
+        <th class="users_table">First Name</th>
+				<th class="users_table">Last Name</th>
+        <th class="users_table">Facebook ID</th>
+        <th class="users_table">Phone Number</th>
       </tr>
       {{#each users}}
         {{> user}}
@@ -14,11 +14,11 @@
 </template>
 
 <template name="user">
-  <tr>
+  <tr class="users_table">
 <!--    <td>{{_id}}</td>-->
-    <td>{{profile.firstName}}</td>
-		<td>{{profile.lastName}}</td>
-    <td>{{profile.fb}}</td>
-    <td>{{profile.phone}}</td>
+    <td class="users_table">{{profile.firstName}}</td>
+		<td class="users_table">{{profile.lastName}}</td>
+    <td class="users_table">{{profile.fb}}</td>
+    <td class="users_table">{{profile.phone}}</td>
   </tr>
 </template>
