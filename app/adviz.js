@@ -9,6 +9,7 @@ if (Meteor.isClient) {
 	
 	/* Dashboard Session Variable Initialization */
 	Session.set('dashPage', 'overview');
+	Session.set('unsent', true);
   
 //	Template.registerHelper('getBody', function () {
 //		return Session.get('loadingSplash') ? currPage : 'loading';
@@ -68,6 +69,10 @@ if (Meteor.isClient) {
 	
 	Template.registerHelper('noPhone', function(input) {
 		return !Meteor.user().profile.phone;
+	});
+	
+	Template.registerHelper('unsent', function(input){
+		return Session.get("unsent")
 	});
 	
 	function renderAdminLTE(context) {

@@ -57,7 +57,7 @@
 													</div><!-- /.direct-chat-info -->
 													<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
 													<div class="direct-chat-text">
-														I would like to give the Police Superintendent feedback regarding the recent robbery spree in my neighborhood.
+														I would like to file a report.
 													</div><!-- /.direct-chat-text -->
 												</div><!-- /.direct-chat-msg -->
 
@@ -69,7 +69,31 @@
 													</div><!-- /.direct-chat-info -->
 													<img class="direct-chat-img" src="img/police_officer.jpg" alt="message user image"><!-- /.direct-chat-img -->
 													<div class="direct-chat-text">
-														Of course! What is your feedback?
+														Of course! What category of crime was committed?
+													</div><!-- /.direct-chat-text -->
+												</div><!-- /.direct-chat-msg -->
+												
+												<!-- Message to the right -->
+												<div class="direct-chat-msg right {{#if unsent}}hidden{{/if}}">
+													<div class="direct-chat-info clearfix">
+														<span class="direct-chat-name pull-right">{{currFirstName}} {{currLastName}}</span>
+														<span class="direct-chat-timestamp pull-left">22 Feb Jan 1:41 pm</span>
+													</div><!-- /.direct-chat-info -->
+													<img class="direct-chat-img" src="img/professor.jpg" alt="message user image"><!-- /.direct-chat-img -->
+													<div class="direct-chat-text">
+														It was a robbery.
+													</div><!-- /.direct-chat-text -->
+												</div><!-- /.direct-chat-msg -->
+
+												<!-- Message. Default to the left -->
+												<div class="direct-chat-msg {{#if unsent}}hidden{{/if}}">
+													<div class="direct-chat-info clearfix">
+														<span class="direct-chat-name pull-left">Inspector Konda</span>
+														<span class="direct-chat-timestamp pull-right">22 Feb 1:41 pm</span>
+													</div><!-- /.direct-chat-info -->
+													<img class="direct-chat-img" src="img/police_officer.jpg" alt="message user image"><!-- /.direct-chat-img -->
+													<div class="direct-chat-text">
+														I am starting a First Incident Report for a robbery. When and where was it commited?
 													</div><!-- /.direct-chat-text -->
 												</div><!-- /.direct-chat-msg -->
 
@@ -79,7 +103,7 @@
 											<div class="input-group">
 												<input type="text" name="message" placeholder="Type Message ..." class="form-control">
 												<span class="input-group-btn">
-													<button type="button" class="btn btn-warning btn-flat">Send</button>
+													<button type="button" class="btn btn-warning btn-flat sendmessage">Send</button>
 												</span>
 											</div>
 										</div><!-- /.box-footer-->
